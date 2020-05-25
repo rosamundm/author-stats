@@ -4,6 +4,6 @@ from django.urls import include, path
 from . import views
 
 urlpatterns = [
-    path("", views.index, name="index"),
+    path("", views.book_list, name="book_list"), #index 
 ]
 
