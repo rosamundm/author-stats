@@ -14,25 +14,19 @@
  </div>
 
 
- {% block content %}
-
- <div class="hero-para">
-  <h2>Hold yourself accountable. Track your word count and see your progress.</h2>
-
-<h3>
+{% block content %}
 
 
-  <form method="POST" action="/">
-    <p>Username:</p>
+  <form action="/success/" method="POST">
+    {% csrf_token %}
+    {{ form.as_table }} <!-- redundant?! -->
+    Username:
       <input type="text" name="Username">
-    <p>Password:</p>
+    Password:
       <input type="text" name="Password">
-    <input type="submit" value="log in">
+    <input type="submit" value="Login">
+    <input type="hidden" name="next" value="{{ next }}">
   </form>
-
-  <br>
-  <a href="/signup">Sign up</a>
-</h3>
 
 
 {% endblock %}

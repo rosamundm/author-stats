@@ -1,7 +1,7 @@
 from django import forms
-from .models import Book
+from django.core.exceptions import ValidationError
+from .models import User
 
-class BookForm(forms.ModelForm):
-    class Meta:
-        model = Book
-        fields = "title", "review"
+class UserForm(forms.ModelForm):
+    username = forms.CharField(max_length=10)
+    password = forms.CharField(widget = forms.PasswordInput())
