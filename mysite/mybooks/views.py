@@ -13,7 +13,7 @@ def index(request):
     return render(request, "mybooks/index.html")
 
 def success(request):
-    books = Book.objects.get()
+    books = Book.objects.filter(date_added__lte=timezone.now()).order_by("date_added")
     return render(request, "mybooks/success.html", {"books": books})
 
 def signup(request):

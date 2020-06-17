@@ -18,7 +18,7 @@ class User(models.Model):
 
 
 class Book(models.Model):
-    date_added = models.DateTimeField(default=timezonenow)
+    date_added = models.DateTimeField(default=timezone.now)
     title = models.CharField(max_length=10, help_text="A working title is great!", null=True)
     synopsis = models.TextField(help_text="What's it about?", null=True)
 

@@ -1,22 +1,24 @@
 <html>
+<body>
 
 {% load static %}
 
-
 <head>
  <title>authorCount</title>
- <link rel="stylesheet" type="text/css" href="mysite/css/base.css">
+ <link rel="stylesheet" type="text/css" href="/static/mybooks/css/base.css">
 
 </head>
 
 <div class="home-header">
 <h1>authorCount</h1>
- </div>
-
+</div>
 
 {% block content %}
+<div class="slogan">
+ <h2>Hold yourself ac-count-able: track your word count and see your progress.</h2>
+</div>
 
-
+<div class="login-form">
   <form action="/success/" method="POST">
     {% csrf_token %}
     {{ form.as_table }} <!-- redundant?! -->
@@ -27,6 +29,12 @@
     <input type="submit" value="Login">
     <input type="hidden" name="next" value="{{ next }}">
   </form>
+</div>
 
 
 {% endblock %}
+
+
+</body>
+
+</html>
