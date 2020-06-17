@@ -1,15 +1,38 @@
+<html>
 
 {% load static %}
 
-<html>
- <head>
-  <title>Rosamund's Books</title>
- </head>
+
+<head>
+ <title>authorCount</title>
+ <link rel="stylesheet" type="text/css" href="mysite/css/base.css">
+
+</head>
+
+<div class="home-header">
+<h1>authorCount</h1>
+ </div>
 
 
- <div class="home-header">
-   <h1>Rosamund's Books</h1>
-  </div
+ {% block content %}
+
+ <div class="hero-para">
+  <h2>Hold yourself accountable. Track your word count and see your progress.</h2>
+
+<h3>
 
 
+  <form method="POST" action="/">
+    <p>Username:</p>
+      <input type="text" name="Username">
+    <p>Password:</p>
+      <input type="text" name="Password">
+    <input type="submit" value="log in">
+  </form>
 
+  <br>
+  <a href="/signup">Sign up</a>
+</h3>
+
+
+{% endblock %}

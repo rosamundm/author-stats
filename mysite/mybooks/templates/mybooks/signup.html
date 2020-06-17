@@ -1,0 +1,20 @@
+{% extends "mybooks/base.html" %}
+
+
+
+{% block content %}
+
+<h2>Sign up for a new account:</h2>
+
+<form method="POST" action="/">
+  <p>Username:</p>
+    <input type="text" name="Username">
+  <p>Email address:</p>
+    <input type="text" name="Email">
+  <p>Create a password (5-10 characters):</p>
+    <input type="text" name="Password">
+  <input type="submit" value="Go!">
+</form>
+
+
+{% endblock %}

@@ -1,5 +1,8 @@
+*.pyc
+*~
 *.sqlite3
 venv
 .env
 private_settings.py
+__pycache__
 
