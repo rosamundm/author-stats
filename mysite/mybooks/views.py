@@ -1,9 +1,11 @@
+from django.utils import timezone
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, TemplateView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .forms import UserForm
+from .models import Book
 
 # page views:
 
@@ -11,7 +13,8 @@ def index(request):
     return render(request, "mybooks/index.html")
 
 def success(request):
-    return render(request, "mybooks/success.html")
+    books = Book.objects.get()
+    return render(request, "mybooks/success.html", {"books": books})
 
 def signup(request):
     return render(request, "mybooks/signup.html")

@@ -1,5 +1,29 @@
+<!-- add "extends" -->
+
+{% block content %}
+
 {% if user.is_authenticated %}
  <p>Welcome, {{ user.username }}!</p>
+
+ <h2>Your books:</h2>
+
+   {% for book in books %}
+
+<div class"book-list">
+  {{ book.title }}
+
+</div>
+
+   {% endfor %}
+
 {% else %}
  <p>Invalid user or login details. Please <a href="/">try again.</a></p>
 {% endif %}
+
+
+
+
+
+
+
+{% endblock %}

@@ -1,6 +1,8 @@
 from django.db import models
 from django.conf import settings
 from django.urls import reverse
+from django.utils import timezone
+
 
 class User(models.Model):
     username = models.CharField(max_length=10, primary_key=True)  # ForeignKey ?
@@ -16,9 +18,10 @@ class User(models.Model):
 
 
 class Book(models.Model):
+    date_added = models.DateTimeField(default=timezonenow)
     title = models.CharField(max_length=10, help_text="A working title is great!", null=True)
     synopsis = models.TextField(help_text="What's it about?", null=True)
-    
+
     # change to CharField? :
     wordcount = models.IntegerField(help_text="Your word count when you added this title", null=True)
     goalwordcount = models.IntegerField(null=True)
