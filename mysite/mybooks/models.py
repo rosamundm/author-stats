@@ -5,13 +5,10 @@ from django.utils import timezone
 
 
 class User(models.Model):
-    username = models.CharField(max_length=10, primary_key=True)  # ForeignKey ?
+    id = models.IntegerField(primary_key=True, default=0)
+    username = models.ForeignKey(settings.AUTH_USER_MODEL, default=1, null=True, on_delete=models.CASCADE)  # ForeignKey ?
     email = models.CharField(max_length=30)
     password = models.CharField(max_length=10)
-
-    """
-    user = User.objects.create_user("sample_username", "sample_email", "sample_pw")
-    """
 
     def __str__(self):
         return self.username
@@ -19,7 +16,7 @@ class User(models.Model):
 
 class Book(models.Model):
     date_added = models.DateTimeField(default=timezone.now)
-    title = models.CharField(max_length=10, help_text="A working title is great!", null=True)
+    title = models.CharField(max_length=50, help_text="A working title is great!", null=True)
     synopsis = models.TextField(help_text="What's it about?", null=True)
 
     # change to CharField? :
