@@ -1,14 +1,27 @@
 from django.utils import timezone
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect, Http404
-from django.views.generic import ListView, DetailView, TemplateView
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .forms import UserForm, BookForm
+from django.contrib.auth import authenticate, login, logout
+from .forms import SignInForm, SignUpForm, BookForm
 from .models import Book
 
 # page views:
 
 def index(request):
+    if request.user.is_authenticated:
+        return render(request, "mybooks/success.html")
+
+    # sign in as existing user:
+    if request.method == "POST":
+        username = request.POST["username"]
+        password = request.POST["password"]
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect("success")
+        else:
+            signinform = SignInForm(request.POST)
+            return render(request, "mybooks/success.html", {"signinform": signinform})
     return render(request, "mybooks/index.html")
 
 def success(request):
@@ -59,13 +72,46 @@ def about(request):
 
 
 
-# function views (should this be within index view?)
+# views for signing up and signing out:
 
-def get_username(request):
+def sign_up(request):
+    if request.user.is_authenticated:
+        return redirect("/")
     if request.method == "POST":
-        loginform = UserForm(request.POST)
-        if loginform.is_valid():
-            return HttpResponseRedirect("/success")
+        signupform = SignUpForm(request.POST)
+        if signupform.is_valid():
+            signupform.save()
+            username = signupform.cleaned_data.get("username")
+            email = signupform.cleaned_data.get("email")
+            password = signupform.cleaned_data.get("password")
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            return redirect("success")
+        else:
+            return render(request, "mybooks/signup.html", {"signupform": signupform})
     else:
-        loginform = UserForm()
-    return render(request, "index.html", {"loginform": loginform})
+        signupform = SignUpForm()
+        return render(request, "mybooks/signup.html", {"signupform": signupform})
+
+
+def sign_in(request):
+    if request.user.is_authenticated:
+        return render(request, "mybooks/success.html")
+    if request.method == "POST":
+        username = request.POST["username"]
+        password = request.POST["password"]
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect("success")
+        else:
+            signinform = SignInForm(request.POST)
+            return render(request, "mybooks/success.html", {"signinform": signinform})
+    else:
+        signinform = SignInForm()
+        return render(request, "mybooks/index.html", {"signinform": signinform})
+
+
+def sign_out(request):
+    logout(request)
+    return redirect("/")

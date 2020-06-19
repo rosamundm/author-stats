@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'mybooks',
-#    'crispy-forms',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -125,6 +125,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 
 LOGIN_REDIRECT_URL = "/"
+
+CRISPY_TEMPLATE_PACK = "bootstrap3"
 
 
 #AUTH_USER_MODEL = "users.CustomUser"

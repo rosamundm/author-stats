@@ -2,9 +2,30 @@ from django import forms
 from django.core.exceptions import ValidationError
 from .models import User, Book
 
-class UserForm(forms.ModelForm):
+class SignInForm(forms.ModelForm):
     username = forms.CharField(max_length=10)
     password = forms.CharField(widget = forms.PasswordInput())
+
+    class Meta:
+        model = User
+        fields = [
+            "username",
+            "password"
+        ]
+
+
+class SignUpForm(forms.ModelForm):
+    username = forms.CharField(max_length=10)
+    email = forms.CharField(max_length=50)
+    password = forms.CharField(widget = forms.PasswordInput())
+
+    class Meta:
+        model = User
+        fields = [
+            "username",
+            "email",
+            "password"
+        ]
 
 
 class BookForm(forms.ModelForm):
