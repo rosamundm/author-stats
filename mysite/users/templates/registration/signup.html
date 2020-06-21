@@ -1,0 +1,16 @@
+{% extends "mybooks/index.html" %}
+
+{% load static crispy_forms_tags %}
+
+{% block content %}
+
+<h2>Sign up for a new account:</h2>
+
+<form method="POST" action="/success/">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="submit" value="Go!">
+</form>
+
+
+{% endblock %}

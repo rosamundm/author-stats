@@ -2,15 +2,15 @@ from django.utils import timezone
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.contrib.auth import authenticate, login, logout
-from .forms import SignInForm, SignUpForm, BookForm
+from .forms import BookForm #SignInForm, SignUpForm,
 from .models import Book
 
-# page views:
 
 def index(request):
+    return render(request, "mybooks/index.html")
     if request.user.is_authenticated:
         return render(request, "mybooks/success.html")
-
+"""
     # sign in as existing user:
     if request.method == "POST":
         username = request.POST["username"]
@@ -22,7 +22,7 @@ def index(request):
         else:
             signinform = SignInForm(request.POST)
             return render(request, "mybooks/success.html", {"signinform": signinform})
-    return render(request, "mybooks/index.html")
+"""
 
 def success(request):
     books = Book.objects.filter(date_added__lte=timezone.now()).order_by("date_added")
@@ -71,10 +71,10 @@ def about(request):
 
 
 
-
+"""
 # views for signing up and signing out:
 
-def sign_up(request):
+def signup(request):
     if request.user.is_authenticated:
         return redirect("/")
     if request.method == "POST":
@@ -94,7 +94,7 @@ def sign_up(request):
         return render(request, "mybooks/signup.html", {"signupform": signupform})
 
 
-def sign_in(request):
+def signin(request):
     if request.user.is_authenticated:
         return render(request, "mybooks/success.html")
     if request.method == "POST":
@@ -112,6 +112,7 @@ def sign_in(request):
         return render(request, "mybooks/index.html", {"signinform": signinform})
 
 
-def sign_out(request):
+def signout(request):
     logout(request)
     return redirect("/")
+"""

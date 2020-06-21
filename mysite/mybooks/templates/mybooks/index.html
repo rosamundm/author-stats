@@ -23,18 +23,6 @@
  <h3>Hold yourself ac-<em>count</em>-able: track your words, see your progress.</h3>
 </div>
 
-<div class="login-form">
-  <form action="/success/" method="POST">
-    {% csrf_token %}
-    {{ signinform.as_table }} <!-- redundant?! -->
-    Username:
-      <input type="text" name="Username">
-    Password:
-      <input type="text" name="Password">
-    <input type="submit" value="Login">
-    <input type="hidden" name="next" value="{{ next }}">
-  </form>
-</div>
 
 New user? <a href="/signup">Sign up</a>
 

@@ -37,7 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'users.apps.UsersConfig',
+
     'mybooks',
+
     'crispy_forms',
 ]
 
@@ -123,13 +126,14 @@ STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
-
+LOGIN_URL = "/user/login/"
+LOGIN_URL = "/user/logout/"
 LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/"
+
+AUTH_USER_MODEL = "users.CustomUser"
 
 CRISPY_TEMPLATE_PACK = "bootstrap3"
-
-
-#AUTH_USER_MODEL = "users.CustomUser"
 
 # for secret info:
 try:
