@@ -9,3 +9,8 @@ body {
         font-size: 16px;
         background-color: #DAEEF0;
       }
+
+.navbar {
+        background-color: #59CAD5;
+        width: 100%;
+      }

@@ -1,6 +1,4 @@
 <html>
-<body>
-
 {% load static crispy_forms_tags %}
 
 <head>
@@ -12,11 +10,13 @@
  <link rel="stylesheet" type="text/css" href="/static/mybooks/css/base.css">
 </head>
 
-<nav>
-  <div class="home-header">
+<nav class="navbar">
     <h1><a href="/">authorCount</a></h1>
-  </div>
+
+
 </nav>
+
+<body>
 
 {% block content %}
 <div class="slogan">
@@ -24,8 +24,14 @@
 </div>
 
 
-New user? <a href="/signup">Sign up</a>
-
+<div class="registration">
+{% if user.is_authenticated %}
+  Welcome, {{ user.first_name }}!
+{% else %}
+  <p>You are not signed in... <a href="/user/signin">log in here</a></p>
+  <p>New user? <a href="/user/signup">Sign up</a></p>
+{% endif %}
+</div>
 
 {% endblock %}
 
