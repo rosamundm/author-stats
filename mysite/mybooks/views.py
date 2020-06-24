@@ -69,6 +69,9 @@ def signup(request):
 def about(request):
     return render(request, "mybooks/about.html")
 
+def contact_donate(request):
+    return render(request, "mybooks/contact-donate.html")
+
 
 
 """

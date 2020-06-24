@@ -3,39 +3,70 @@
 
 <head>
  <title>authorCount</title>
- <!--- Bootstrap: -->
+
+ <!--- Bootstrap CSS: -->
  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
  <!---->
  <link rel="stylesheet" type="text/css" href="/static/mybooks/css/base.css">
 </head>
 
-<nav class="navbar">
-    <h1><a href="/">authorCount</a></h1>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/">authorCount</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+   <ul class="navbar-nav mr-auto">
+     <li class="nav-item">
+       <div class="registration">
+       {% if user.is_authenticated %}
+         Welcome, {{ user.first_name }}!
+         <br><a href="/success">Go to your books...</a>
+       {% else %}
+         <button class="CTA"><a href="/signin">Log in</a></button> <button class="CTA"><a href="/signup">Sign up</a></button>
+
+       {% endif %}
+       </div>
+     </li>
 
 
+   </ul>
+
+
+</div>
 </nav>
 
 <body>
 
 {% block content %}
-<div class="slogan">
- <h3>Hold yourself ac-<em>count</em>-able: track your words, see your progress.</h3>
+
+
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Hold yourself accountable</h1>
+    <h3>Track your words, see your progress.</h3>
+
+
+  </div>
 </div>
 
 
-<div class="registration">
-{% if user.is_authenticated %}
-  Welcome, {{ user.first_name }}!
-{% else %}
-  <p>You are not signed in... <a href="/user/signin">log in here</a></p>
-  <p>New user? <a href="/user/signup">Sign up</a></p>
-{% endif %}
-</div>
 
 {% endblock %}
+
+<footer class="footer-text">
+    <a class="footer-link" href="/about">About authorCount</a>
+    <br>
+    <a class="footer-link" href="/contact-donate">Contact & donate</a>
+    <br>
+    <a class="footer-link" href="/terms-conditions">Terms & conditions</a>
+</footer>
 
 
 </body>
 
+<!-- Bootstrap JS:-->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<!---->
 </html>

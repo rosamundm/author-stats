@@ -1,10 +1,12 @@
 {% extends "mybooks/index.html" %}
 
-{% block title %} Sign In {% endblock title %}
-
 {% load static crispy_forms_tags %}
 
 
+<div class="container">
+{% block title %} Sign in {% endblock title %}
+
+<div class="page-text">
 {% block content %}
 
 <form method="POST" action="/success/">
@@ -14,3 +16,6 @@
 </form>
 
 {% endblock content %}
+
+</div>
+</div>

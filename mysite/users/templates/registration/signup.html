@@ -2,15 +2,23 @@
 
 {% load static crispy_forms_tags %}
 
+<div class="container">
+
+  {% block title %}Sign up for a new account{% endblock title %}
+
+
+<div class="page-text">
+
+
 {% block content %}
 
-<h2>Sign up for a new account:</h2>
-
-<form method="POST" action="/user/signin/">
+<form method="POST">
   {% csrf_token %}
   {{ form.as_p }}
   <input type="submit" value="Go!">
 </form>
 
-
 {% endblock %}
+
+</div>
+</div>

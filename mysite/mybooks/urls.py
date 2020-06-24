@@ -12,4 +12,5 @@ urlpatterns = [
      path("mybooks/<int:pk>/update/", views.update_book, name="update"),
      path("mybooks/<pk>/delete/", views.delete_book, name="delete"),
      path("about/", views.about, name="about"),
+     path("contact-donate/", views.contact_donate, name="contact-donate")
 ]

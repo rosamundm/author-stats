@@ -1,14 +1,13 @@
 from django.views.generic.edit import CreateView, FormView
 from .forms import CustomUserCreationForm, CustomLoginForm
 from django.shortcuts import render, redirect
+from django.contrib.auth.forms import AuthenticationForm
 
 """
-class SignInView(FormView):
+class SignInView(≈≈≈):
     form_class = CustomLoginForm
     template_name = "registration/signin.html"
     success_url = "/success/"
-
-
 class SignUpView(CreateView):
     form_class = CustomUserCreationForm
     template_name = "registration/signup.html"
@@ -18,7 +17,7 @@ class SignUpView(CreateView):
 
 def signup(request):
         if request.method == "POST":
-            form = CustomUserCreationForm(request.POST)
+            form = CustomUserCreationForm(data=request.POST)
             if form.is_valid():
                 form.save()
             return redirect("/user/login")
@@ -29,7 +28,7 @@ def signup(request):
 
 def signin(request):
     if request.method == "POST":
-        form = CustomLoginForm(request.POST)
+        form = AuthenticationForm(request.POST)
         if form.is_valid():
             form.save()
         return redirect("/success")
