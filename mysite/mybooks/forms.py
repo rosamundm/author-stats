@@ -33,8 +33,9 @@ class BookForm(forms.ModelForm):
     class Meta:
         model = Book
         fields = [
-            "date_added",
             "title",
             "synopsis",
+            "wordcount",
+            "goalwordcount",
             "review"
             ]

@@ -32,20 +32,19 @@ def book_detail(request, pk):
     book = get_object_or_404(Book, pk=pk)
     return render (request, "mybooks/book_detail.html", {"book": book})
 
-def create_book(request, pk):
+def create_book(request):
     if request.method == "POST":
-        # specify individual forms?
         createform = BookForm(request.POST)
         if createform.is_valid():
             book = createform.save(commit=False)
             book.date_added = timezone.now()
             book.save()
-            return redirect("book_detail", pk=post.pk)
+            return redirect("book_detail", pk=book.pk)
     else:
         createform = BookForm()
     return render(request, "mybooks/update.html", {"createform": createform})
 
-def update_book(request):
+def update_book(request, pk):
     book = get_object_or_404(Book, pk=pk)
     if request.method == "POST":
         updateform = BookForm(request.POST, instance=book)
@@ -71,6 +70,9 @@ def about(request):
 
 def contact_donate(request):
     return render(request, "mybooks/contact-donate.html")
+
+def terms_conditions(request):
+    return render(request, "mybooks/terms-conditions.html")
 
 
 

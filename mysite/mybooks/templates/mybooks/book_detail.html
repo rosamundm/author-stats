@@ -38,9 +38,9 @@
        <p>{{ book.review }}</p>
     </div>
 
-    <a href="{% url "update" pk=book.pk %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Make changes</a>
+    <a href="{% url 'update' pk=book.pk %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Make changes</a>
 
-    <a href="{% url "success" %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Return to my books</a>
+    <a href="{% url 'success' %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Return to my books</a>
 
 
 </div>

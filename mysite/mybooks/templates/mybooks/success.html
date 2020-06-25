@@ -11,7 +11,7 @@
 
   <ul>
     <li>
-      <a href="{% url "book_detail" pk=book.pk %}">{{ book.title }}</a>
+      <a href="{% url 'book_detail' pk=book.pk %}">{{ book.title }}</a>
     </li>
   </ul>
 
@@ -20,7 +20,7 @@
 </div>
 
 
-  <a href="{% url "create_book" %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Add new book</a>
+  <a href="{% url 'create_book' %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Add new book</a>
 
 </div>
 
