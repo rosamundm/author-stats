@@ -21,11 +21,10 @@
      <li class="nav-item">
        <div class="registration">
        {% if user.is_authenticated %}
-         Welcome, {{ user.first_name }}!
-         <br><a href="/success">Go to your books...</a>
+          Welcome, {{ user.first_name }}!
+          <br><a href="/success">Go to your books...</a>
        {% else %}
-         <button class="CTA"><a href="/signin">Log in</a></button> <button class="CTA"><a href="/signup">Sign up</a></button>
-
+          <a href="/signin" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Sign in</a> <a href="/signup" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Sign up</a>
        {% endif %}
        </div>
      </li>

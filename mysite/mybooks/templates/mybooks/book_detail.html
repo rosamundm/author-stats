@@ -14,7 +14,7 @@
     <div class="book-stats">
       <p><strong>Current word count:</strong> {{ book.wordcount }}</p>
       <p><strong>Goal word count:</strong> {{ book.goalwordcount }}</p>
-      <button onclick="toggleFunction()">View wordcount history</button>
+      <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" onclick="toggleFunction()">View wordcount history</a>
     </div>
 
         <div id="count-history">
@@ -28,6 +28,7 @@
              -->
         </div>
 
+<br><br><br>
 
     <div class="book-text">
       <h3>Synopsis:</h3>
@@ -37,14 +38,9 @@
        <p>{{ book.review }}</p>
     </div>
 
+    <a href="{% url "update" pk=book.pk %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Make changes</a>
 
-<button>
-  <a href="{% url "update" pk=book.pk %}">Make changes</a>
-</button>
-
-<button>
-  <a href="/success/">Return to my books</a>
-</button>
+    <a href="{% url "success" %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Return to my books</a>
 
 
 </div>

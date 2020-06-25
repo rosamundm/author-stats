@@ -6,21 +6,13 @@
 
 <div class="container">
 
-<h2>Update book:</h2>
+<h2>New book</h2>
 
    <form method="POST" class="book-form">
      {% csrf_token %}
-     {{ updateform.as_p }}
+     {{ createform.as_p }}
      <button type="submit">Save</button>
    </form>
-
-
-<!--
-  <a href="{% url "update" pk=book.pk %}"
-  class="btn btn-primary btn-lg active"
-  role="button"
-  aria-pressed="true">Make changes</a>
-  -->
 
 
 
