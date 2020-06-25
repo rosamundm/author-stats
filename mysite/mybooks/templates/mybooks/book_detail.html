@@ -1,12 +1,10 @@
 {% extends "mybooks/index.html" %}
 
-
 {% load static %}
 
+{% block content %}
 
 <div class="container">
-
-   {% block content %}
 
     <div class="book-metadata">
       <h2>{{ book.title }}</h2>
@@ -16,10 +14,11 @@
     <div class="book-stats">
       <p><strong>Current word count:</strong> {{ book.wordcount }}</p>
       <p><strong>Goal word count:</strong> {{ book.goalwordcount }}</p>
-      <button onclick="myFunction()">View wordcount history</button>
+      <button onclick="toggleFunction()">View wordcount history</button>
     </div>
 
         <div id="count-history">
+          Hello
           <!--
            {% for wordcount in wordcounts %}
              {{ update.date_added }}: {{ update.wordcount }}
@@ -39,15 +38,21 @@
     </div>
 
 
+<button>
+  <a href="{% url "update" pk=book.pk %}">Make changes</a>
+</button>
 
+<button>
+  <a href="/success/">Return to my books</a>
+</button>
 
-<p><a href="/success/">return to my books</a></p>
 
 </div>
 
 
+<!-- to toggle history: -->
 <script>
-  function myFunction() {
+  function toggleFunction() {
     var x = document.getElementById("count-history");
     if (x.style.display === "none") {
       x.style.display = "block";
@@ -57,4 +62,4 @@
   }
 </script>
 
-   {% endblock %}
+{% endblock %}
