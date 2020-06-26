@@ -39,10 +39,10 @@ def create_book(request):
             book = createform.save(commit=False)
             book.date_added = timezone.now()
             book.save()
-            return redirect("book_detail", pk=book.pk)
+            return redirect("/success/", pk=book.pk)
     else:
         createform = BookForm()
-    return render(request, "mybooks/update.html", {"createform": createform})
+    return render(request, "mybooks/create_book.html", {"createform": createform})
 
 def update_book(request, pk):
     book = get_object_or_404(Book, pk=pk)
@@ -52,7 +52,7 @@ def update_book(request, pk):
             book = updateform.save(commit=False)
             book.last_updated = timezone.now()
             book.save()
-            return redirect("book_detail", pk=book.pk)
+            return redirect("/success/", pk=book.pk)
     else:
         updateform = BookForm(instance=book)
     return render(request, "mybooks/update.html", {"updateform": updateform})
