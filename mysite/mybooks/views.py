@@ -62,6 +62,9 @@ def delete_book(request, pk):
     book.delete()
     return redirect("success")
 
+def wordcount_stats(request, pk):
+    return render(request, "mybooks/statistics/stats.html")
+
 def signup(request):
     return render(request, "mybooks/signup.html")
 

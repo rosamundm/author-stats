@@ -28,6 +28,12 @@ urlpatterns = [
          name="book_detail"
          ),
 
+    path(
+        "mybooks/<int:pk>/stats",
+        views.wordcount_stats,
+        name="wordcount_stats"
+        ),
+
      path(
          "mybooks/<int:pk>/update/",
          views.update_book,
