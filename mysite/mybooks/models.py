@@ -41,7 +41,7 @@ class Book(models.Model):
     def words_remaining_pc(self):
         words_by_100 = self.wordcount * 100
         remaining_pc = words_by_100 / self.goalwordcount
-        return remaining_pc
+        return round(remaining_pc, 2)
 
     # words written since last time:
     def words_added(wordcount, added):
@@ -54,10 +54,6 @@ class Book(models.Model):
         if wordcount and deleted:
             wordcount -= deleted
         return wordcount
-
-
-
-
 
 
 
@@ -76,10 +72,6 @@ def words_per_day(wordcount, goalwordcount):
 
     # use Pandas to find average per day!
 
-    PSEUDOCODE:
-
-    Book.wordcount.get.all()
-    -> put these into a list
 
 
     for w in list:
@@ -88,9 +80,32 @@ def words_per_day(wordcount, goalwordcount):
         [show variable in template] <--- should have name like "wordsinweek", "wordsinday"
 
 
-Book.objects.values_list("wordcount")
+
+# filter results in last 7 days:
+
+items = Book.objects.filter(
+               last_updated__lte=datetime.datetime.today(),
+               last_updated__gt=datetime.datetime.today()-datetime.timedelta(days=30)).\
+    values('last_updated').annotate(count=Count('id'))
+
+    for item in items:
+        blah blah blah
 
 
 
 
-    """
+start_date = datetime.date.today() - datetime.timedelta(days=7)
+update = Book.objects.filter(last_updated=start_date, wordcount=wordcount)
+updates = updates.annotate(count=Count("id")).values("last_updated").order_by("last_updated")
+if len(updates) < 7:
+    update_list = list(updates)
+    dates = set([(datetime.date.today() - datetime.timedelta(days=i)) for i in range(6)])
+    update_set = set([u["last_updated"] for u in updates])
+    for date in (update_set - dates):
+        update_list.append({"last_updated": date, "count": 0})
+    update_list = sorted(update_list, key=lambda item: item["last_updated"])
+else:
+    update_list = updates
+
+
+"""

@@ -6,35 +6,38 @@
 
 
 <div class="container">
-  <h2>Statistics:</h2>
+  <a href="{% url 'book_detail' book.pk %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Return to <em>{{book.title}}</em></a>
+   <br>
+   <br>
+     <h4>You are <strong>{{book.words_remaining_pc}}%</strong> of the way towards your goal. Keep it up!</h4>
+       <p>To be precise, you have <strong>{{book.words_remaining}}</strong> words left to go.</p>
+     <br>
 
     <div class="page-text">
-      <h4>History</h4>
-        <p>Some text</p>
+      <h3>History</h3>
+        <p>Highest daily average, etc.</p>
+        <p>At this rate, it will take you x days to finish</p>
+        <a href="#">Set yourself a daily target!</a>
 
-        <p><strong>Words remaining:</strong> {{book.words_remaining}}</p>
+      <br>
+
+
+      <div id="count-history">
+
+        <!--
+         {% for wordcount in wordcounts %}
+           {{ update.date_added }}: {{ update.wordcount }}
+            * date of last update
+            * wordcount at that time (get name of function)
+           {% endfor %}
+           -->
 
       <h3>Visualisation</h3>
         <p>Some graphs</p>
 
-
-
-<!--i.e. "stats" is context_object_name:
-
-  {% for stat in stats %}
-         stat.title
-         stat.date_added
-
-         {% some_stat_fn stat.pk} # this is the template tag!
-
-         {% endfor %} -->
-
-
-
     </div>
+
 </div>
-
-
 
 
 {% endblock %}

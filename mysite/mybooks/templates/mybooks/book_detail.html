@@ -5,34 +5,17 @@
 {% block content %}
 
 <div class="container">
-
+   <a href="{% url 'stats' book.pk %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">View statistics</a> <a href="{% url 'update' book.pk %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Make changes</a> <a href="{% url 'success' %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Return to my books</a>
+   <br>
+   <br>
     <div class="book-metadata">
       <h2>{{ book.title }}</h2>
-      <p><strong>Date added:</strong> {{ book.date_added }}</p>
-      <p><strong>Last updated:</strong> {{ book.last_updated }}</p>
+       <br>
+       <p><strong>Date added:</strong> {{ book.date_added }}</p>
+       <p><strong>Last updated:</strong> {{ book.last_updated }}</p>
+       <p><strong>Current word count:</strong> {{ book.wordcount }}</p>
+       <p><strong>Goal word count:</strong> {{ book.goalwordcount }}</p>
     </div>
-
-    <div class="book-stats">
-      <p><strong>Current word count:</strong> {{ book.wordcount }}</p>
-      <p><strong>Goal word count:</strong> {{ book.goalwordcount }}</p>
-      <h4>You are {{book.words_remaining_pc}}% of the way towards your goal. Keep it up!</h4>
-
-
-      <a href="{% url 'stats' book.pk %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" onclick="toggleFunction()">View statistics</a>
-    </div>
-
-        <div id="count-history">
-
-          <!--
-           {% for wordcount in wordcounts %}
-             {{ update.date_added }}: {{ update.wordcount }}
-              * date of last update
-              * wordcount at that time (get name of function)
-             {% endfor %}
-             -->
-        </div>
-
-<br><br><br>
 
     <div class="book-text">
       <h4>Synopsis:</h4>
@@ -41,11 +24,6 @@
        <h4>Review:</h4>
        <p>{{ book.review }}</p>
     </div>
-
-    <a href="{% url 'update' book.pk %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Make changes</a>
-
-    <a href="{% url 'success' %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Return to my books</a>
-
 
 </div>
 
