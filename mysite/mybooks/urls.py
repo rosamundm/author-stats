@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.urls import include, path
 from . import views
+#from .views import StatView
 
 # list these in same order as views for elegance!
 urlpatterns = [
@@ -28,12 +29,6 @@ urlpatterns = [
          name="book_detail"
          ),
 
-    path(
-        "mybooks/<int:pk>/stats",
-        views.wordcount_stats,
-        name="wordcount_stats"
-        ),
-
      path(
          "mybooks/<int:pk>/update/",
          views.update_book,
@@ -45,12 +40,6 @@ urlpatterns = [
          views.delete_book,
          name="delete"
          ),
-
-     #path(
-    #     "mybooks/<int:pk>/stats/",
-    #     views.stats,
-    #     name="stats"
-    #     ),
 
      path(
          "about/",
@@ -69,4 +58,16 @@ urlpatterns = [
          views.terms_conditions,
          name="terms-conditions"
          ),
+
+    path(
+        "mybooks/<int:pk>/stats",
+        views.stats,
+        name="stats"
+        ),
+
+    #path(
+    #    "mybooks/<int:pk>/stats",
+    #    views.words_remaining,
+    #    name="words_remaining"
+    #    ),
 ]

@@ -9,16 +9,20 @@
     <div class="book-metadata">
       <h2>{{ book.title }}</h2>
       <p><strong>Date added:</strong> {{ book.date_added }}</p>
+      <p><strong>Last updated:</strong> {{ book.last_updated }}</p>
     </div>
 
     <div class="book-stats">
       <p><strong>Current word count:</strong> {{ book.wordcount }}</p>
       <p><strong>Goal word count:</strong> {{ book.goalwordcount }}</p>
-      <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" onclick="toggleFunction()">View wordcount history</a>
+      <h4>You are {{book.words_remaining_pc}}% of the way towards your goal. Keep it up!</h4>
+
+
+      <a href="{% url 'stats' book.pk %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" onclick="toggleFunction()">View statistics</a>
     </div>
 
         <div id="count-history">
-          Hello
+
           <!--
            {% for wordcount in wordcounts %}
              {{ update.date_added }}: {{ update.wordcount }}
@@ -31,10 +35,10 @@
 <br><br><br>
 
     <div class="book-text">
-      <h3>Synopsis:</h3>
+      <h4>Synopsis:</h4>
        <p>{{ book.synopsis }}</p>
 
-       <h3>Review:</h3>
+       <h4>Review:</h4>
        <p>{{ book.review }}</p>
     </div>
 
@@ -44,18 +48,5 @@
 
 
 </div>
-
-
-<!-- to toggle history: -->
-<script>
-  function toggleFunction() {
-    var x = document.getElementById("count-history");
-    if (x.style.display === "none") {
-      x.style.display = "block";
-    } else {
-      x.style.display = "none";
-    }
-  }
-</script>
 
 {% endblock %}

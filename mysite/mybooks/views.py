@@ -1,10 +1,12 @@
 from django.utils import timezone
+from datetime import datetime, timedelta
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.contrib.auth import authenticate, login, logout
-from .forms import BookForm #SignInForm, SignUpForm,
+from .forms import BookForm
 from .models import Book
 
+from django.views.generic import ListView
 
 def index(request):
     return render(request, "mybooks/index.html")
@@ -28,9 +30,11 @@ def success(request):
     books = Book.objects.filter(date_added__lte=timezone.now()).order_by("date_added")
     return render(request, "mybooks/success.html", {"books": books})
 
+
 def book_detail(request, pk):
     book = get_object_or_404(Book, pk=pk)
     return render (request, "mybooks/book_detail.html", {"book": book})
+
 
 def create_book(request):
     if request.method == "POST":
@@ -62,8 +66,6 @@ def delete_book(request, pk):
     book.delete()
     return redirect("success")
 
-def wordcount_stats(request, pk):
-    return render(request, "mybooks/statistics/stats.html")
 
 def signup(request):
     return render(request, "mybooks/signup.html")
@@ -78,9 +80,35 @@ def terms_conditions(request):
     return render(request, "mybooks/terms-conditions.html")
 
 
+def stats(request, pk):
+    book = get_object_or_404(Book, pk=pk)
+    return render (request, "mybooks/stats.html", {"book": book})
+
+
 
 """
+
+
+class StatView(ListView):
+    model = Book
+    template_name = "mybooks/stats.html"
+"""
+
+
+
+
+
+# "Data should be calculated in views,
+# then passed to templates for display."
+
+
+
+
+
+
 # views for signing up and signing out:
+
+"""
 
 def signup(request):
     if request.user.is_authenticated:

@@ -2,7 +2,6 @@
 
 {% load static %}
 
-
 {% block content %}
 
 
@@ -12,8 +11,25 @@
     <div class="page-text">
       <h4>History</h4>
         <p>Some text</p>
+
+        <p><strong>Words remaining:</strong> {{book.words_remaining}}</p>
+
       <h3>Visualisation</h3>
         <p>Some graphs</p>
+
+
+
+<!--i.e. "stats" is context_object_name:
+
+  {% for stat in stats %}
+         stat.title
+         stat.date_added
+
+         {% some_stat_fn stat.pk} # this is the template tag!
+
+         {% endfor %} -->
+
+
 
     </div>
 </div>
