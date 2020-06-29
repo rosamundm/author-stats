@@ -1,38 +1,33 @@
+from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.views.generic.edit import CreateView, FormView
 from .forms import CustomUserCreationForm, CustomLoginForm
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm
 
-"""
-class SignInView(≈≈≈):
-    form_class = CustomLoginForm
-    template_name = "registration/signin.html"
-    success_url = "/success/"
-class SignUpView(CreateView):
-    form_class = CustomUserCreationForm
-    template_name = "registration/signup.html"
-    success_url = "/success/"
-"""
-
-
 def signup(request):
-        if request.method == "POST":
-            form = CustomUserCreationForm(data=request.POST)
-            if form.is_valid():
-                form.save()
-            return redirect("/user/login")
+    signupform = CustomUserCreationForm(data=request.POST)
+    if request.method == "POST":
+        if signupform.is_valid():
+            signupform.save()
+            return redirect("/user/signin")
         else:
-            form = CustomUserCreationForm()
+            signupform = CustomUserCreationForm()
+        return render(request, "registration/signup.html", {"signupform": signupform})
 
-        return render(request, "registration/signup.html", {"form": form})
 
 def signin(request):
+    signinform = CustomLoginForm(data=request.POST)
     if request.method == "POST":
-        form = AuthenticationForm(request.POST)
-        if form.is_valid():
-            form.save()
-        return redirect("/success")
+        if signinform.is_valid():
+            username = signinformform.cleaned_data["username"]
+            password = signinformform.cleaned_data["password"]
+            user = authenticate(request, username=username, password= password)
+            if user is not None:
+                login(request, user)
+                return render(redirect, "mybooks/success.html")
+            else:
+                return render(redirect, "mybooks/nosuccess.html")
+        else:
+            return render(redirect, "registration/signin.html", {"signinform": signinform})
     else:
-        form = CustomLoginForm()
-
-    return render(request, "registration/signin.html", {"form": form})
+        return render(redirect, "registration/signin.html", {"signinform": signinform})

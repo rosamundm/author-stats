@@ -42,6 +42,9 @@ INSTALLED_APPS = [
     'mybooks',
 
     'crispy_forms',
+
+    'registration',
+
 ]
 
 MIDDLEWARE = [
@@ -128,12 +131,21 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 LOGIN_URL = "/user/signin/"
 LOGOUT_URL = "/user/signout/"
-LOGIN_REDIRECT_URL = "/"
+LOGIN_REDIRECT_URL = "/success"
 LOGOUT_REDIRECT_URL = "/"
 
 AUTH_USER_MODEL = "users.CustomUser"
 
-CRISPY_TEMPLATE_PACK = "bootstrap3"
+ACCOUNT_ACTIVATION_DAYS = 7
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+DEFAULT_FROM_EMAIL = "testing@example.com"
+EMAIL_HOST_USER = ""
+EMAIL_HOST_PASSWORD = ""
+EMAIL_USE_TLS = False
+EMAIL_PORT = 1025
+
+
+CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 # for secret info:
 try:

@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from .forms import BookForm
 from .models import Book
 
@@ -11,16 +12,17 @@ def index(request):
     if request.user.is_authenticated:
         return render(request, "mybooks/success.html")
 
+@login_required
 def success(request):
     books = Book.objects.filter(date_added__lte=timezone.now()).order_by("date_added")
     return render(request, "mybooks/success.html", {"books": books})
 
-
+@login_required
 def book_detail(request, pk):
     book = get_object_or_404(Book, pk=pk)
     return render (request, "mybooks/book_detail.html", {"book": book})
 
-
+@login_required
 def create_book(request):
     if request.method == "POST":
         createform = BookForm(request.POST)
@@ -33,6 +35,7 @@ def create_book(request):
         createform = BookForm()
     return render(request, "mybooks/create_book.html", {"createform": createform})
 
+@login_required
 def update_book(request, pk):
     book = get_object_or_404(Book, pk=pk)
     if request.method == "POST":
@@ -46,6 +49,7 @@ def update_book(request, pk):
         updateform = BookForm(instance=book)
     return render(request, "mybooks/update.html", {"updateform": updateform})
 
+@login_required
 def delete_book(request, pk):
     book = get_object_or_404(Book, pk=pk)
     book.delete()
