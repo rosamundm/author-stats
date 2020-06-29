@@ -6,25 +6,10 @@ from django.contrib.auth import authenticate, login, logout
 from .forms import BookForm
 from .models import Book
 
-from django.views.generic import ListView
-
 def index(request):
     return render(request, "mybooks/index.html")
     if request.user.is_authenticated:
         return render(request, "mybooks/success.html")
-"""
-    # sign in as existing user:
-    if request.method == "POST":
-        username = request.POST["username"]
-        password = request.POST["password"]
-        user = authenticate(username=username, password=password)
-        if user is not None:
-            login(request, user)
-            return redirect("success")
-        else:
-            signinform = SignInForm(request.POST)
-            return render(request, "mybooks/success.html", {"signinform": signinform})
-"""
 
 def success(request):
     books = Book.objects.filter(date_added__lte=timezone.now()).order_by("date_added")
@@ -66,7 +51,6 @@ def delete_book(request, pk):
     book.delete()
     return redirect("success")
 
-
 def signup(request):
     return render(request, "mybooks/signup.html")
 
@@ -83,25 +67,6 @@ def terms_conditions(request):
 def stats(request, pk):
     book = get_object_or_404(Book, pk=pk)
     return render (request, "mybooks/stats.html", {"book": book})
-
-
-
-"""
-
-
-class StatView(ListView):
-    model = Book
-    template_name = "mybooks/stats.html"
-"""
-
-
-
-
-
-# "Data should be calculated in views,
-# then passed to templates for display."
-
-
 
 
 
@@ -151,4 +116,5 @@ def signin(request):
 def signout(request):
     logout(request)
     return redirect("/")
+
 """
