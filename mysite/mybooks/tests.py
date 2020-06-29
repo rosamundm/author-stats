@@ -1,3 +1,6 @@
 from django.test import TestCase
 
-# Create your tests here.
+class FirstTest(TestCase):
+    def test_index(self):
+        req = self.client.get("/")
+        self.assertEqual(req.status_code, 200)

@@ -41,7 +41,10 @@ class Book(models.Model):
     def words_remaining_pc(self):
         words_by_100 = self.wordcount * 100
         remaining_pc = words_by_100 / self.goalwordcount
-        return round(remaining_pc, 2)
+        if remaining_pc < 1:
+            return round(remaining_pc, 1)
+        else:
+            return round(remaining_pc)
 
     # words written since last time:
     def words_added(wordcount, added):
