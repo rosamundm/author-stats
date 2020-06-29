@@ -12,21 +12,21 @@ class Book(models.Model):
                     null=True)
     title = models.CharField(
                     max_length=50,
-                #    help_text="A working title is great!",
+                    help_text="A working title is great!",
                     null=True)
     synopsis = models.TextField(
-                #    help_text="What's it about?",
+                    help_text="What's it about?",
                     null=True)
     wordcount = models.IntegerField(
-                #    help_text="Your current word count",
+                    help_text="Your current word count",
                     null=True,
                     verbose_name="Word count")
     goalwordcount = models.IntegerField(
-                #    help_text="What are you aiming for?",
+                    help_text="What are you aiming for?",
                     null=True,
                     verbose_name="Goal word count")
     review = models.TextField(
-                #    help_text="Add any extra notes here",
+                    help_text="Add any extra notes here",
                     null=True)
 
     def __str__(self):

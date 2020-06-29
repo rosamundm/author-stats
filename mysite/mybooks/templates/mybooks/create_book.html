@@ -1,6 +1,6 @@
 {% extends "mybooks/index.html" %}
 
-{% load static %}
+{% load static crispy_forms_tags %}
 
 {% block content %}
 
@@ -10,7 +10,7 @@
 
    <form method="POST" class="book-form">
      {% csrf_token %}
-     {{ createform.as_p }}
+     {{ createform|crispy }}
      <button type="submit">Save</button>
    </form>
 

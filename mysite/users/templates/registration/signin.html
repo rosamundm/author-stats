@@ -2,20 +2,19 @@
 
 {% load static crispy_forms_tags %}
 
+{% block content %}
 
 <div class="container">
-{% block title %} Sign in {% endblock title %}
 
-<div class="page-text">
-{% block content %}
+   <h2>Sign in as existing user</h2>
+
 
 <form method="POST" action="/success/">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">sign in</button>
+    {{ form|crispy }}
+    <button type="submit">Let's go!</button>
 </form>
 
-{% endblock content %}
+{% endblock %}
 
-</div>
 </div>
