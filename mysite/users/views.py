@@ -13,10 +13,12 @@ def signup(request):
         if newsform.is_valid():
             n = newsform.save(commit=False)
             if NewsletterRecipient.objects.filter(email=n.email).exists():
-                return HttpResponse(str("That email address is already in use"))
+                return render(request, "registration/newsletter_success.html")
+                #return HttpResponse(str("That email address is already in use"))
             else:
                 n.save()
-                return HttpResponse(str("Thanks for signing up"))
+                #return HttpResponse(str("Thanks for signing up"))
+                return render(request, "registration/newsletter_success.html")
     else:
         newsform = NewsletterForm()
     return render(request, "registration/signup.html", {"newsform": newsform})
