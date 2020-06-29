@@ -67,7 +67,7 @@ def contact_donate(request):
 def terms_conditions(request):
     return render(request, "mybooks/terms-conditions.html")
 
-
+@login_required
 def stats(request, pk):
     book = get_object_or_404(Book, pk=pk)
     return render (request, "mybooks/stats.html", {"book": book})

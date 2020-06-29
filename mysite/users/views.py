@@ -1,33 +1,41 @@
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.views.generic.edit import CreateView, FormView
-from .forms import CustomUserCreationForm, CustomLoginForm
+from .forms import NewsletterForm
+from .models import NewsletterRecipient
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm
 
 def signup(request):
-    signupform = CustomUserCreationForm(data=request.POST)
+    #signupform = CustomUserCreationForm(data=request.POST)
+
     if request.method == "POST":
-        if signupform.is_valid():
-            signupform.save()
-            return redirect("/user/signin")
-        else:
-            signupform = CustomUserCreationForm()
-        return render(request, "registration/signup.html", {"signupform": signupform})
+        newsform = NewsletterForm(request.POST)
+        if newsform.is_valid():
+            n = newsform.save(commit=False)
+            if NewsletterRecipient.objects.filter(email=n.email).exists():
+                return HttpResponse(str("That email address is already in use"))
+            else:
+                n.save()
+                return HttpResponse(str("Thanks for signing up"))
+    else:
+        newsform = NewsletterForm()
+    return render(request, "registration/signup.html", {"newsform": newsform})
+
+
+
+
+
+
 
 
 def signin(request):
-    signinform = CustomLoginForm(data=request.POST)
+    #signinform = CustomLoginForm(data=request.POST)
+
     if request.method == "POST":
-        if signinform.is_valid():
-            username = signinformform.cleaned_data["username"]
-            password = signinformform.cleaned_data["password"]
-            user = authenticate(request, username=username, password= password)
-            if user is not None:
-                login(request, user)
-                return render(redirect, "mybooks/success.html")
-            else:
-                return render(redirect, "mybooks/nosuccess.html")
-        else:
-            return render(redirect, "registration/signin.html", {"signinform": signinform})
+        newsform = NewsletterForm(request.POST)
+        if newsform.is_valid():
+            n = newsform.save()
+            return "Thank you for signing up!"
     else:
-        return render(redirect, "registration/signin.html", {"signinform": signinform})
+        newsform = NewsletterForm()
+    return render(redirect, "registration/signin.html", {"newsform": newsform})

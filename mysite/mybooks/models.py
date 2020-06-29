@@ -60,6 +60,10 @@ class Book(models.Model):
 
 
 
+
+
+
+
 """
 # list of accumulated words added, for monthly average:
 date_recorded = ["2020-06-22", "2020-06-23", "2020-06-24"]
