@@ -6,24 +6,29 @@
 
 <div class="container">
 
+
    <h2>Watch this space!</h2>
 
    <p>Stay in the loop: authorCount is accepting user registration soon.<br>
 Under GDPR, we solemnly swear not to abuse your personal data.</p>
 
+
+
+<!--
    <form method="POST">
      {% csrf_token %}
      {{ newsform|crispy }}
      <input type="submit" value="Let me know!">
    </form>
+   --->
 
-<!--
+
    <form method="POST">
      {% csrf_token %}
      {{ signupform|crispy }}
      <input type="submit" value="Make my account!">
    </form>
-  --->
+
 
 {% endblock %}
 

@@ -43,7 +43,6 @@ INSTALLED_APPS = [
 
     'crispy_forms',
 
-    'registration',
 
 ]
 
@@ -134,9 +133,9 @@ LOGOUT_URL = "/user/signout/"
 LOGIN_REDIRECT_URL = "/success"
 LOGOUT_REDIRECT_URL = "/"
 
+# overrides default Django user model
 AUTH_USER_MODEL = "users.CustomUser"
 
-ACCOUNT_ACTIVATION_DAYS = 7
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 DEFAULT_FROM_EMAIL = "testing@example.com"
 EMAIL_HOST_USER = ""

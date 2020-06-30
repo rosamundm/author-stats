@@ -24,7 +24,7 @@
           Welcome, {{ user.first_name }}!
           <br><a href="/success">Go to your books...</a>
        {% else %}
-          <!--<a href="/signin" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Sign in</a> -->
+          <a href="/signin" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Sign in</a>
           <a href="/signup" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Sign up</a>
        {% endif %}
        </div>
@@ -45,7 +45,7 @@
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
     <h1 class="display-4">Hold yourself accountable</h1>
-    <h3>Track your words, see your progress.</h3>
+    <h3 class="subtitle">Track your words, see your progress.</h3>
 
 
   </div>
@@ -55,7 +55,9 @@
 
 {% endblock %}
 
-<footer>
+
+<!--
+<footer class="fixed-bottom">
   <div class="footer-links">
     <a href="/about">About authorCount</a>
     <br>
@@ -67,11 +69,13 @@
     <small><em>authorCount</em> © Rosamund Mather 2020</small>
   </div>
 
-    <!-- Bootstrap JS:-->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-    <!---->
-</footer>
 
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+</footer>
+-->
 
 
 </body>
