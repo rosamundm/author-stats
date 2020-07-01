@@ -52,8 +52,11 @@ def update_book(request, pk):
 @login_required
 def delete_book(request, pk):
     book = get_object_or_404(Book, pk=pk)
-    book.delete()
-    return redirect("success")
+    return render (request, "mybooks/delete.html", {"book": book})
+
+    if request.method == "POST":
+        book.delete()
+#    return render (request, "mybooks/success", {"book": book})
 
 def signup(request):
     return render(request, "mybooks/signup.html")

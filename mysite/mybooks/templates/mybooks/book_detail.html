@@ -25,6 +25,8 @@
        <p>{{ book.review }}</p>
     </div>
 
+    <a href="{% url 'delete' book.pk %}" class="btn btn-danger" role="button" aria-pressed="true">Delete this book</a>
+
 </div>
 
 {% endblock %}

@@ -3,45 +3,51 @@ from django.views.generic.edit import CreateView, FormView
 from .forms import CustomUserCreationForm, CustomLoginForm #NewsletterForm
 #from .models import NewsletterRecipient
 from django.shortcuts import render, redirect
-from django.contrib.auth import login, authenticate
+from django.contrib import messages
+from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import AuthenticationForm
 
 def signup(request):
-    context = {}
+    signupform = CustomUserCreationForm(data=request.POST)
     if request.method == "POST":
-        signupform = CustomUserCreationForm(data=request.POST)
         if signupform.is_valid():
             signupform.save()
-            email = signupform.cleaned_data.get("signupform")
-            raw_password = signupform.cleaned_data.get("password1")
-            account = authenticate(email=email, password=raw_password)
-            login(request, account)
-            return redirect("/success/")
-        else:
-            context["signupform"] = signupform
-    else:
-        signupform = CustomUserCreationForm
-    return render(request, "registration/signup.html", context)
+            user = signupform.cleaned_data.get("username")
+            messages.success(request, "Account created")
+            return redirect("signin")
+
+    if request.user.is_authenticated:
+        return redirect("success")
+
+
+    return render(request, "registration/signup.html", {"signupform": signupform})
 
 
 def signin(request):
-    context = {}
-    user = request.user
-    if user.is_authenticated:
-        return redirect("/about")
-    elif request.method == "POST":
-        signinform = CustomLoginForm(data=request.POST)
+    signinform = CustomLoginForm(data=request.POST)
+    if request.method == "POST":
         if signinform.is_valid():
-            email = request.POST["email"]
-            password = request.POST["password"]
-            user = authenticate(email=email, password=password)
+            username = request.POST.get("username")
+            password = request.POST.get("password")
+            user = authenticate(request, username=username, password=password)
             if user:
                 login(request, user)
-                return redirect("/success")
+            #    context = {"signinform": signinform}
+                return render(request, "mybooks/success.html", context)
+    elif request.user.is_authenticated:
+        return redirect("success")
     else:
-        signinform = CustomLoginForm()
-    context["signinform"] = signinform
-    return render(request, "registration/signin.html", context)
+        messages.info(request, "Details incorrect")
+    return render(request, "registration/signin.html", {"signinform": signinform})
+
+
+def signout(request):
+    logout(request)
+    return redirect("signin")
+
+
+
+
 
 
 

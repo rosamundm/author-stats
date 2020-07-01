@@ -6,13 +6,22 @@
 
 <div class="container">
 
+   <h2>Make an account</h2>
 
-   <h2>Watch this space!</h2>
+   <form method="POST">
+     {% csrf_token %}
+     {{ signupform|crispy }}
+     <input type="submit" value="Let's go!">
+   </form>
 
-   <p>Stay in the loop: authorCount is accepting user registration soon.<br>
+
+
+
+<!--
+FOR NEWSLETTER:
+
+<p>Stay in the loop: authorCount is accepting user registration soon.<br>
 Under GDPR, we solemnly swear not to abuse your personal data.</p>
-
-
 
 <!--
    <form method="POST">
@@ -21,13 +30,6 @@ Under GDPR, we solemnly swear not to abuse your personal data.</p>
      <input type="submit" value="Let me know!">
    </form>
    --->
-
-
-   <form method="POST">
-     {% csrf_token %}
-     {{ signupform|crispy }}
-     <input type="submit" value="Make my account!">
-   </form>
 
 
 {% endblock %}
