@@ -9,8 +9,8 @@
 
   {% for book in books %}
 
-  <ul>
-    <li>
+  <ul class="list-group">
+    <li class="list-group-item">
       <a href="{% url 'book_detail' book.pk %}">{{ book.title }}</a>
     </li>
   </ul>
@@ -19,6 +19,7 @@
 
 </div>
 
+<br>
 
   <a href="{% url 'create_book' %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Add new book</a>
 

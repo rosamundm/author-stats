@@ -128,9 +128,9 @@ STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
-LOGIN_URL = "/user/signin/"
-LOGOUT_URL = "/user/signout/"
-LOGIN_REDIRECT_URL = "/success"
+LOGIN_URL = "/signin/"
+LOGOUT_URL = "/signout/"
+LOGIN_REDIRECT_URL = "/success/"
 LOGOUT_REDIRECT_URL = "/"
 
 # overrides default Django user model

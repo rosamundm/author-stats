@@ -24,7 +24,7 @@ Under GDPR, we solemnly swear not to exploit your personal data.</p>
 <form method="POST" action="/">
     {% csrf_token %}
     {{ signinform|crispy }}
-    <button type="submit">Let's go!</button>
+    <input type="submit" value="Let's go!">
 </form>
 
 

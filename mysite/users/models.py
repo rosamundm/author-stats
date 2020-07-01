@@ -2,17 +2,18 @@ from django.utils import timezone
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 
-# defines what happens when (super)user is created
+# defines what happens when user is created
 class CustomAccountManager(BaseUserManager):
     def create_user(self, email, username, password=None):
         user = self.model(
            email = self.normalize_email(email),
            username = username,
            first_name = first_name,
-           last_name = last_name
+           last_name = last_name,
+           password = password
         )
         user.set_password(password)
-        user.save(using=self.db) # ?
+        user.save(using=self.db)
         return user
 
 
@@ -31,6 +32,10 @@ class CustomUser(AbstractUser):
         unique=False
         )
     last_name = models.CharField(
+        max_length=20,
+        unique=False
+        )
+    password = models.CharField(
         max_length=20,
         unique=False
         )

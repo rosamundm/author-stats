@@ -15,11 +15,8 @@ def signup(request):
             user = signupform.cleaned_data.get("username")
             messages.success(request, "Account created")
             return redirect("signin")
-
     if request.user.is_authenticated:
         return redirect("success")
-
-
     return render(request, "registration/signup.html", {"signupform": signupform})
 
 
@@ -32,7 +29,6 @@ def signin(request):
             user = authenticate(request, username=username, password=password)
             if user:
                 login(request, user)
-            #    context = {"signinform": signinform}
                 return render(request, "mybooks/success.html", context)
     elif request.user.is_authenticated:
         return redirect("success")
@@ -44,12 +40,6 @@ def signin(request):
 def signout(request):
     logout(request)
     return redirect("signin")
-
-
-
-
-
-
 
 
 
@@ -69,5 +59,4 @@ def signout(request):
     else:
         newsform = NewsletterForm()
     return render(request, "registration/signup.html", {"newsform": newsform})
-
 """
