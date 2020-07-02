@@ -38,16 +38,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'users.apps.UsersConfig',
-
     'mybooks',
-
     'crispy_forms',
-
-
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -125,13 +122,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
+"""
 LOGIN_URL = "/signin/"
 LOGOUT_URL = "/signout/"
 LOGIN_REDIRECT_URL = "/success/"
 LOGOUT_REDIRECT_URL = "/"
+"""
 
 # overrides default Django user model
 AUTH_USER_MODEL = "users.CustomUser"
