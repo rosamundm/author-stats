@@ -15,15 +15,11 @@ Are you sure you want to delete <em>{{book.title}}</em>? You won't be able to ge
  <br>
  <br>
 
-<button type="submit" value="Delete" </button>
+<button type="submit" class="btn btn-danger" role="button" aria-pressed="true">Delete </button> <a href="{% url 'book_detail' book.pk %}" class="btn btn-secondary" role="button" aria-pressed="true">Don't do it!</a>
+
 
 </form>
 
-
-
-<!--
-  <a href="{% url 'delete' book.pk %}" class="btn btn-danger" role="button" aria-pressed="true">Yes, please delete</a> <a href="{% url 'book_detail' book.pk %}" class="btn btn-secondary" role="button" aria-pressed="true">Don't do it!</a>
--->
 
 
 </div>
