@@ -12,3 +12,8 @@ class BookForm(forms.ModelForm):
             "goalwordcount",
             "review"
             ]
+
+class BookDeleteForm(forms.ModelForm):
+    class Meta:
+        model = Book
+        fields = []

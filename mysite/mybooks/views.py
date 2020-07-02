@@ -4,8 +4,12 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from .forms import BookForm
+from django.contrib import messages
+from .forms import BookForm#, BookDeleteForm
 from .models import Book
+
+from django.urls import reverse_lazy
+from django.views.generic.edit import DeleteView
 
 def index(request):
     return render(request, "mybooks/index.html")
@@ -49,14 +53,16 @@ def update_book(request, pk):
         updateform = BookForm(instance=book)
     return render(request, "mybooks/update.html", {"updateform": updateform})
 
+
 @login_required
 def delete_book(request, pk):
     book = get_object_or_404(Book, pk=pk)
-    return render (request, "mybooks/delete.html", {"book": book})
-
     if request.method == "POST":
         book.delete()
-#    return render (request, "mybooks/success", {"book": book})
+        messages.success(request, "Deleted!")
+        return redirect("/success")
+    return render(request, "mybooks/delete.html", {"book": book})
+
 
 def signup(request):
     return render(request, "mybooks/signup.html")

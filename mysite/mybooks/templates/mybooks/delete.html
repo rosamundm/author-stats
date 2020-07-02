@@ -8,9 +8,22 @@
 
 <h2>Speak now or forever hold your peace!</h2>
 
-Are you sure you want to delete this book? You won't be able to get it back.
+<form action="{% url 'delete' book.pk %}" method="post">
+  {% csrf_token %}
+
+Are you sure you want to delete <em>{{book.title}}</em>? You won't be able to get it back.
+ <br>
+ <br>
+
+<button type="submit" value="Delete" </button>
+
+</form>
 
 
+
+<!--
+  <a href="{% url 'delete' book.pk %}" class="btn btn-danger" role="button" aria-pressed="true">Yes, please delete</a> <a href="{% url 'book_detail' book.pk %}" class="btn btn-secondary" role="button" aria-pressed="true">Don't do it!</a>
+-->
 
 
 </div>
