@@ -124,12 +124,12 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
-"""
-LOGIN_URL = "/signin/"
-LOGOUT_URL = "/signout/"
-LOGIN_REDIRECT_URL = "/success/"
+
+LOGIN_URL = "/signin"
+LOGOUT_URL = "/signout"
+LOGIN_REDIRECT_URL = "/mybooks"
 LOGOUT_REDIRECT_URL = "/"
-"""
+
 
 # overrides default Django user model
 AUTH_USER_MODEL = "users.CustomUser"

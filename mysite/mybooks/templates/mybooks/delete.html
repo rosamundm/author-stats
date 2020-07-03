@@ -5,9 +5,7 @@
 {% block content %}
 
 <div class="container">
-
-<h2>Speak now or forever hold your peace!</h2>
-
+   <h2 class="display-5">Speak now or forever hold your peace!</h2>
 <form action="{% url 'delete' book.pk %}" method="post">
   {% csrf_token %}
 

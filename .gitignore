@@ -2,6 +2,7 @@
 *~
 *.sqlite3
 venv
+newenv
 .env
 private_settings.py
 __pycache__

@@ -6,19 +6,26 @@ body {
         background-color: #BFD9F6;
       }
 
+
 .navbar {
         background-color: #EBF3F7;
         min-height: 50px;
       }
 
-
 .navbar-brand {
-        font-size: 30px;
+        font-size: 60px;
 }
+
+
+.navdiv {
+  padding: 30px
+}
+
+
 
 .jumbotron {
         background-color: #BFD9F6;
-        text-align: right;
+        text-align: center;
 
 }
 
@@ -71,8 +78,24 @@ a:hover {
   color: #194678;
 }
 
-.subtitle{
+.display-5 {
+  color: #194678;
+}
+
+.subtitle {
   color: #86B9F2;
 }
+
+
+.page-text {
+  color: #4D5763;
+}
+
+.nav-item {
+  font-size: 20px;
+}
+
+
+
 
 /* button colour: 0062CC */

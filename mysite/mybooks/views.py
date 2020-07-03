@@ -14,12 +14,12 @@ from django.views.generic.edit import DeleteView
 def index(request):
     return render(request, "mybooks/index.html")
     if request.user.is_authenticated:
-        return render(request, "mybooks/success.html")
+        return render(request, "mybooks/mybooks.html")
 
 @login_required
-def success(request):
+def book_list(request): # aka "success"
     books = Book.objects.filter(date_added__lte=timezone.now()).order_by("date_added")
-    return render(request, "mybooks/success.html", {"books": books})
+    return render(request, "mybooks/book_list.html", {"books": books})
 
 @login_required
 def book_detail(request, pk):
@@ -34,7 +34,7 @@ def create_book(request):
             book = createform.save(commit=False)
             book.date_added = timezone.now()
             book.save()
-            return redirect("/success/", pk=book.pk)
+            return redirect("/mybooks/", pk=book.pk)
     else:
         createform = BookForm()
     return render(request, "mybooks/create_book.html", {"createform": createform})
@@ -48,7 +48,7 @@ def update_book(request, pk):
             book = updateform.save(commit=False)
             book.last_updated = timezone.now()
             book.save()
-            return redirect("/success/", pk=book.pk)
+            return redirect("/mybooks/", pk=book.pk)
     else:
         updateform = BookForm(instance=book)
     return render(request, "mybooks/update.html", {"updateform": updateform})
@@ -59,10 +59,9 @@ def delete_book(request, pk):
     book = get_object_or_404(Book, pk=pk)
     if request.method == "POST":
         book.delete()
-        messages.success(request, "Deleted!")
-        return redirect("/success")
+        messages.success(request, "Book deleted!")
+        return redirect("/mybooks")
     return render(request, "mybooks/delete.html", {"book": book})
-
 
 def signup(request):
     return render(request, "mybooks/signup.html")
@@ -70,8 +69,8 @@ def signup(request):
 def about(request):
     return render(request, "mybooks/about.html")
 
-def contact_donate(request):
-    return render(request, "mybooks/contact-donate.html")
+def contact(request):
+    return render(request, "mybooks/contact.html")
 
 def terms_conditions(request):
     return render(request, "mybooks/terms-conditions.html")
@@ -80,54 +79,3 @@ def terms_conditions(request):
 def stats(request, pk):
     book = get_object_or_404(Book, pk=pk)
     return render (request, "mybooks/stats.html", {"book": book})
-
-
-
-
-# views for signing up and signing out:
-
-"""
-
-def signup(request):
-    if request.user.is_authenticated:
-        return redirect("/")
-    if request.method == "POST":
-        signupform = SignUpForm(request.POST)
-        if signupform.is_valid():
-            signupform.save()
-            username = signupform.cleaned_data.get("username")
-            email = signupform.cleaned_data.get("email")
-            password = signupform.cleaned_data.get("password")
-            user = authenticate(username=username, password=password)
-            login(request, user)
-            return redirect("success")
-        else:
-            return render(request, "mybooks/signup.html", {"signupform": signupform})
-    else:
-        signupform = SignUpForm()
-        return render(request, "mybooks/signup.html", {"signupform": signupform})
-
-
-def signin(request):
-    if request.user.is_authenticated:
-        return render(request, "mybooks/success.html")
-    if request.method == "POST":
-        username = request.POST["username"]
-        password = request.POST["password"]
-        user = authenticate(username=username, password=password)
-        if user is not None:
-            login(request, user)
-            return redirect("success")
-        else:
-            signinform = SignInForm(request.POST)
-            return render(request, "mybooks/success.html", {"signinform": signinform})
-    else:
-        signinform = SignInForm()
-        return render(request, "mybooks/index.html", {"signinform": signinform})
-
-
-def signout(request):
-    logout(request)
-    return redirect("/")
-
-"""

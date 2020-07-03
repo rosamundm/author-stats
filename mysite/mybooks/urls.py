@@ -11,9 +11,9 @@ urlpatterns = [
          ),
 
      path(
-         "success/",
-         views.success,
-         name="success"
+         "mybooks/",
+         views.book_list,
+         name="book_list"
          ),
 
      path(
@@ -47,9 +47,9 @@ urlpatterns = [
          ),
 
      path(
-         "contact-donate/",
-         views.contact_donate,
-         name="contact-donate"
+         "contact/",
+         views.contact,
+         name="contact"
          ),
 
      path(
@@ -63,10 +63,4 @@ urlpatterns = [
         views.stats,
         name="stats"
         ),
-
-    #path(
-    #    "mybooks/<int:pk>/stats",
-    #    views.words_remaining,
-    #    name="words_remaining"
-    #    ),
 ]

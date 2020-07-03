@@ -2,7 +2,7 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.views.generic.edit import CreateView, FormView
 from .forms import CustomUserCreationForm, CustomLoginForm #NewsletterForm
 #from .models import NewsletterRecipient
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse
 from django.contrib import messages
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import AuthenticationForm
@@ -12,7 +12,7 @@ def signup(request):
     if request.method == "POST":
         if signupform.is_valid():
             signupform.save()
-            user = signupform.cleaned_data.get("username")
+            user = signupform.cleaned_data.get("username", "password")
             messages.success(request, "Account created")
             return redirect("signin")
     if request.user.is_authenticated:
@@ -40,6 +40,7 @@ def signin(request):
 def signout(request):
     logout(request)
     return redirect("signin")
+
 
 
 

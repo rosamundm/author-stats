@@ -5,7 +5,7 @@
 {% block content %}
 
 <div class="container">
-   <a href="{% url 'stats' book.pk %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">View statistics</a> <a href="{% url 'update' book.pk %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Make changes</a> <a href="{% url 'success' %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Return to my books</a>
+   <a href="{% url 'stats' book.pk %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">View statistics</a> <a href="{% url 'update' book.pk %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Make changes</a> <a href="{% url 'book_list' %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Return to my books</a>
    <br>
    <br>
     <div class="book-metadata">
