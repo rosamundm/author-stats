@@ -11,29 +11,29 @@ Leider gelang mir das zeitgerechte Projektdeployment nicht, dafür habe ich Bild
 
 
 ## Die Anwendung
-Man kann sich über die Startseite ein Konto anlegen oder wieder einloggen.
+Man kann sich über die Startseite ein Konto anlegen oder wieder einloggen. \
 ![homepage](/screenshots/pic1.png)
 ![sign-up form](/screenshots/pic2.png)
 ![sign-up form 2](/screenshots/pic3.png)
 ![sign-in form](/screenshots/pic4.png)
 
-Einmal eingeloggt landet man auf eine Seite, die die bisherigen Bücher darstellt. Hier kann man auch ein neues Buch anlegen.
+Einmal eingeloggt landet man auf eine Seite, die die bisherigen Bücher darstellt. Hier kann man auch ein neues Buch anlegen. \
 ![book list](/screenshots/pic5.png)
 ![new book](/screenshots/pic6.png)
 ![new book 2](/screenshots/pic7.png)
 
-Beim Klicken auf einen Buchtitel wird man zu einer Detail-Seite weitergeleitet:
+Beim Klicken auf einen Buchtitel wird man zu einer Detail-Seite weitergeleitet: \
 ![book detail](/screenshots/pic8.png)
 
 Hier kommen die Python-Funktionen ins Spiel.
-Anpassen:
+Anpassen: \
 ![update book](/screenshots/pic9.png)
 
-Löschen:
+Löschen: \
 ![delete book](/screenshots/pic10.png)
 
-Statistiken:
+Statistiken: \
 ![book stats](/screenshots/pic11.png)
 
-Kurze Vorstellung:
+Kurze Vorstellung: \
 ![about](/screenshots/pic12.png)
