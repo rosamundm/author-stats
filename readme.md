@@ -37,3 +37,7 @@ Statistiken: \
 
 Kurze Vorstellung: \
 ![about](/screenshots/pic12.png)
+
+Responsive Navbar bei mittelgroßen bzw. schmalen Bildschirmen: \
+![toggle](/screenshots/pic13.png)
+![toggle2](/screenshots/pic14.png)
