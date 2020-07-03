@@ -1,5 +1,3 @@
-
-
 <html>
 {% load static crispy_forms_tags %}
 
@@ -21,7 +19,6 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     {% if user.is_authenticated %}
      <div class="nav-item">
-
           Welcome, {{ user.first_name }}!
           <br><a href="/mybooks">Go to my books</a>
           <br><a href="/signout">Sign out</a>
@@ -35,11 +32,6 @@
        <li class="nav-item">
          <a class="nav-link" href="/contact" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Contact</a>
        </li>
-       <!--
-       <li class="nav-item">
-         <a class="nav-link" href="/donate" class="btn btn-primary btn-lg active" role="button" aria-pressed="true"><i class="fas fa-euro-sign"></i></a>
-       </li>
-       -->
        <li class="nav-item">
          <a class="nav-link" href="/terms-conditions" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Legal</a>
        </li>
@@ -52,7 +44,6 @@
 <body>
 
 {% block content %}
-
 
 <div class="jumbotron jumbotron-fluid">
   <div class="container">

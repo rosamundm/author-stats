@@ -5,20 +5,16 @@
 {% block content %}
 
 <div class="container">
+  
    <h2 class="display-5">Speak now or forever hold your peace!</h2>
-<form action="{% url 'delete' book.pk %}" method="post">
-  {% csrf_token %}
 
-Are you sure you want to delete <em>{{book.title}}</em>? You won't be able to get it back.
- <br>
- <br>
-
-<button type="submit" class="btn btn-danger" role="button" aria-pressed="true">Delete </button> <a href="{% url 'book_detail' book.pk %}" class="btn btn-secondary" role="button" aria-pressed="true">Don't do it!</a>
-
-
-</form>
-
-
+   <form action="{% url 'delete' book.pk %}" method="post">
+     {% csrf_token %}
+     Are you sure you want to delete <em>{{book.title}}</em>? You won't be able to get it back.
+     <br>
+     <br>
+     <button type="submit" class="btn btn-danger" role="button" aria-pressed="true">Delete </button> <a href="{% url 'book_detail' book.pk %}" class="btn btn-secondary" role="button" aria-pressed="true">Don't do it!</a>
+   </form>
 
 </div>
 

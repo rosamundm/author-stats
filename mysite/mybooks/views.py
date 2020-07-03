@@ -1,15 +1,13 @@
 from django.utils import timezone
 from datetime import datetime, timedelta
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .forms import BookForm#, BookDeleteForm
+from .forms import BookForm
 from .models import Book
-
 from django.urls import reverse_lazy
-from django.views.generic.edit import DeleteView
+
 
 def index(request):
     return render(request, "mybooks/index.html")
@@ -25,6 +23,11 @@ def book_list(request): # aka "success"
 def book_detail(request, pk):
     book = get_object_or_404(Book, pk=pk)
     return render (request, "mybooks/book_detail.html", {"book": book})
+
+@login_required
+def stats(request, pk):
+    book = get_object_or_404(Book, pk=pk)
+    return render (request, "mybooks/stats.html", {"book": book})
 
 @login_required
 def create_book(request):
@@ -63,8 +66,6 @@ def delete_book(request, pk):
         return redirect("/mybooks")
     return render(request, "mybooks/delete.html", {"book": book})
 
-def signup(request):
-    return render(request, "mybooks/signup.html")
 
 def about(request):
     return render(request, "mybooks/about.html")
@@ -74,8 +75,3 @@ def contact(request):
 
 def terms_conditions(request):
     return render(request, "mybooks/terms-conditions.html")
-
-@login_required
-def stats(request, pk):
-    book = get_object_or_404(Book, pk=pk)
-    return render (request, "mybooks/stats.html", {"book": book})

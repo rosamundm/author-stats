@@ -12,6 +12,7 @@ body {
         min-height: 50px;
       }
 
+
 .navbar-brand {
         font-size: 60px;
 }
@@ -22,12 +23,12 @@ body {
 }
 
 
-
 .jumbotron {
         background-color: #BFD9F6;
         text-align: center;
 
 }
+
 
 .container {
         margin-top: 30px;
@@ -50,9 +51,12 @@ footer {
         text-align: center;
 }
 
+
+
 a {
         color: #0062CC;
 }
+
 
 a:hover {
         color: white;
@@ -65,9 +69,11 @@ a:hover {
 
 }
 
+
 .pc {
    color: pink;
 }
+
 
 #hint_id_title {
     font-size: 10px;
@@ -78,9 +84,11 @@ a:hover {
   color: #194678;
 }
 
+
 .display-5 {
   color: #194678;
 }
+
 
 .subtitle {
   color: #86B9F2;
@@ -90,6 +98,7 @@ a:hover {
 .page-text {
   color: #4D5763;
 }
+
 
 .nav-item {
   font-size: 20px;

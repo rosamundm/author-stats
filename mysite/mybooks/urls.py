@@ -2,7 +2,6 @@ from django.contrib import admin
 from django.urls import include, path
 from . import views
 
-# list these in same order as views for elegance!
 urlpatterns = [
      path(
          "",
@@ -17,15 +16,21 @@ urlpatterns = [
          ),
 
      path(
-         "mybooks/add/",
-         views.create_book,
-         name="create_book"
-         ),
-
-     path(
          "mybooks/<int:pk>/",
          views.book_detail,
          name="book_detail"
+         ),
+
+     path(
+         "mybooks/<int:pk>/stats",
+         views.stats,
+         name="stats"
+         ),
+
+     path(
+         "mybooks/add/",
+         views.create_book,
+         name="create_book"
          ),
 
      path(
@@ -57,10 +62,4 @@ urlpatterns = [
          views.terms_conditions,
          name="terms-conditions"
          ),
-
-    path(
-        "mybooks/<int:pk>/stats",
-        views.stats,
-        name="stats"
-        ),
 ]

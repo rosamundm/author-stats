@@ -1,11 +1,8 @@
-from django.http import HttpResponse, HttpResponseRedirect, Http404
-from django.views.generic.edit import CreateView, FormView
 from .forms import CustomUserCreationForm, CustomLoginForm #NewsletterForm
 #from .models import NewsletterRecipient
 from django.shortcuts import render, redirect, reverse
 from django.contrib import messages
 from django.contrib.auth import login, logout, authenticate
-from django.contrib.auth.forms import AuthenticationForm
 
 def signup(request):
     signupform = CustomUserCreationForm(data=request.POST)
@@ -40,7 +37,6 @@ def signin(request):
 def signout(request):
     logout(request)
     return redirect("signin")
-
 
 
 
