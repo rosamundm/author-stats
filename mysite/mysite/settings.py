@@ -148,3 +148,11 @@ CRISPY_TEMPLATE_PACK = "bootstrap4"
 try:
     from private_settings import *
 except ImportError: print ("ImportError: have you made a local version of private_settings.py? If so, ignore this message.")
+
+
+SECURE_BROWSER_XSS_FILTER = False
+SECURE_CONTENT_TYPE_NOSNIFF = False
+SECURE_SSL_REDIRECT = False
+SECURE_HSTS_SECONDS = 86400
+SECURE_HSTS_INCLUDE_SUBDOMAINS = False
+SECURE_HSTS_PRELOAD = False
