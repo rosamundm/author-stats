@@ -1,8 +1,10 @@
 from django.contrib import admin
 from django.urls import include, path
+from .views import CustomSignOutView
 from . import views
 
 urlpatterns = [
+
     path(
         "signup/",
         views.signup,
@@ -15,9 +17,23 @@ urlpatterns = [
         name="signin"
         ),
 
+    # this actually works — keep!
     path(
         "signout/",
-        views.signout,
+        CustomSignOutView.as_view(),
         name="signout"
         ),
+
+    path(
+        "account_created/",
+        views.account_created,
+        name="account_created"
+    ),
+
+    path(
+        "login_success/",
+        views.login_success,
+        name="login_success"
+    )
+
 ]

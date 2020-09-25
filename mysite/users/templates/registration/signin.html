@@ -6,25 +6,11 @@
 
 <div class="container">
 
-<!--
-  <h2>Watch this space!</h2>
 
-  <p>authorCount will be accepting user registration soon. Stay in the loop by signing up to our mailing list.<br>
-Under GDPR, we solemnly swear not to exploit your personal data.</p>
--->
-
-<!--
-  <form method="POST">
-    {% csrf_token %}
-    {{ newsform|crispy }}
-    <input type="submit" value="Let me know!">
-  </form>
--->
-
-<form method="POST" action="/">
+<form method="POST">
     {% csrf_token %}
     {{ signinform|crispy }}
-    <input type="submit" value="Let's go!">
+    <button type="submit">Let's go!</button>
 </form>
 
 

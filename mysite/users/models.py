@@ -3,10 +3,10 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 
 # defines what happens when user is created
-class CustomAccountManager(BaseUserManager):
+class CustomUserManager(BaseUserManager):
     def create_user(self, email, username, password=None):
         user = self.model(
-           email = self.normalize_email(email),
+           email = email,
            username = username,
            first_name = first_name,
            last_name = last_name,
@@ -45,21 +45,10 @@ class CustomUser(AbstractUser):
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
 
-    USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = ["username",]
+    USERNAME_FIELD = "username"
+    REQUIRED_FIELDS = ["email",]
 
-    objects = CustomAccountManager()
-
+    objects = CustomUserManager()
 
     def __str__(self):
         return self.username
-
-"""
-class NewsletterRecipient(models.Model):
-    name = models.CharField(max_length=15)
-    email = models.EmailField()
-    date_joined = models.DateTimeField(default=timezone.now)
-
-    def __str__(self):
-        return self.email
-"""

@@ -4,6 +4,6 @@
 venv
 venv2
 .env
-private_settings.py
+dev_settings.py
 __pycache__
 notes.py
