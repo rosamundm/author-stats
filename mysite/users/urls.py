@@ -6,6 +6,12 @@ from . import views
 urlpatterns = [
 
     path(
+        "signout/",
+        CustomSignOutView.as_view(),
+        name="signout"
+        ),
+
+    path(
         "signup/",
         views.signup,
         name="signup"
@@ -17,23 +23,16 @@ urlpatterns = [
         name="signin"
         ),
 
-    # this actually works — keep!
     path(
-        "signout/",
-        CustomSignOutView.as_view(),
-        name="signout"
-        ),
-
-    path(
-        "account_created/",
-        views.account_created,
-        name="account_created"
+        "signup_success/",
+        views.signup_success,
+        name="signup_success"
     ),
 
     path(
-        "login_success/",
-        views.login_success,
-        name="login_success"
+        "signin_success/",
+        views.signin_success,
+        name="signin_success"
     )
 
 ]

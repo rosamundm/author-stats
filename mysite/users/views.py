@@ -15,7 +15,7 @@ def signup(request):
         if signupform.is_valid():
             signupform.save()
             user = signupform.cleaned_data.get("username", "password")
-            return HttpResponseRedirect(reverse("account_created"))
+            return HttpResponseRedirect(reverse("signup_success"))
     return render(request, "registration/signup.html", {"signupform": signupform})
 
 
@@ -28,7 +28,7 @@ def signin(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                return HttpResponseRedirect(reverse("login_success"))
+                return HttpResponseRedirect(reverse("signin_success"))
             else:
                 return HttpResponse("Your account is not active")
         else:
@@ -43,9 +43,9 @@ class CustomSignOutView(LogoutView):
         logout(request)
         return redirect("signin")
 
-def account_created(request):
-    return HttpResponse("Thanks for signing up")
+def signup_success(request):
+    return render(request, "registration/signup_success.html")
 
 @login_required
-def login_success(request):
-    return HttpResponse("Login successful")
+def signin_success(request):
+    return render(request, "registration/signin_success.html")

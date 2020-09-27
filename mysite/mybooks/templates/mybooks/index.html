@@ -20,49 +20,63 @@
     {% if user.is_authenticated %}
      <div class="nav-item">
           Hello, {{ user.first_name }}!
-          <br><a href="{% url 'mybooks' %}">Go to my books</a>
-          <br><a href="/signout">Sign out</a>
+          <br><a href="{% url 'index' %}">Dashboard</a>
+          <br><a href="{% url 'signout' %}">Sign out</a>
        {% endif %}
      </div>
 
      <ul class="navbar-nav ml-auto">
        <li class="nav-item">
-         <a class="nav-link" href="/about" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">About</a>
+         <a class="nav-link" href="{% url 'about' %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">About</a>
        </li>
        <li class="nav-item">
-         <a class="nav-link" href="/contact" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Contact</a>
+         <a class="nav-link" href="{% url 'contact' %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Contact</a>
        </li>
        <li class="nav-item">
-         <a class="nav-link" href="/terms-conditions" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Legal</a>
+         <a class="nav-link" href="{% url 'terms-conditions' %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Legal</a>
        </li>
    </ul>
 </div>
 </nav>
 
 
-
 <body>
 
 {% block content %}
 
-<div class="jumbotron jumbotron-fluid">
-  <div class="container">
-    <h1 class="display-4">Hold yourself accountable</h1>
-    <h3 class="subtitle">Track your words, see your progress.</h3>
+  {% if user.is_authenticated %}
+  <!-- dashboard area -->
+    <div class="container">
+      <h2>Track your words, see your progress.</h2>
 
-    <br>
-    <br>
-
-    {% if not user.is_authenticated %}
-       <a href="/signin" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Sign in</a>
-       <a href="/signup" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Sign up</a>
-    {% endif %}
-
+   <ul>
+    <li>
+      My profile
+    </li>
+    <li>
+      <a href="{% url 'book_list' %}">My books</a>
+    </li>
+    <li>
+      Share some stats
+    </li>
+  </ul>
 
   </div>
-</div>
 
+  <!-- end user dashboard area -->
 
+  {% else %}
+   <div class="jumbotron jumbotron-fluid">
+     <div class="container">
+       <h1 class="display-4">Hold yourself accountable</h1>
+       <h3 class="subtitle">Track your words, see your progress.</h3>
+        <br>
+        <br>
+       <a href="{% url 'signin' %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Sign in</a>
+       <a href="{% url 'signup' %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Sign up</a>
+   {% endif %}
+     </div>
+   </div>
 
 {% endblock %}
 
