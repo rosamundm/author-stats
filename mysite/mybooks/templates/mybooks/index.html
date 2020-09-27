@@ -19,8 +19,8 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     {% if user.is_authenticated %}
      <div class="nav-item">
-          Welcome, {{ user.first_name }}!
-          <br><a href="/mybooks">Go to my books</a>
+          Hello, {{ user.first_name }}!
+          <br><a href="{% url 'mybooks' %}">Go to my books</a>
           <br><a href="/signout">Sign out</a>
        {% endif %}
      </div>

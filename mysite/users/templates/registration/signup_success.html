@@ -1,0 +1,16 @@
+{% extends "mybooks/index.html" %}
+
+{% load static crispy_forms_tags %}
+
+
+{% block content %}
+
+<div class="container">
+  <h2>Congratulations on your new account!</h2>
+
+  <p>Why not <a href="{% url 'signin' %}">sign into it</a> right now?</p>
+
+</div>
+
+
+{% endblock %}
