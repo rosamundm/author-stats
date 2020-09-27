@@ -6,33 +6,33 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('mybooks', '0005_book_last_updated'),
+        ("mybooks", "0005_book_last_updated"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='book',
-            name='goalwordcount',
-            field=models.IntegerField(null=True, verbose_name='Goal word count'),
+            model_name="book",
+            name="goalwordcount",
+            field=models.IntegerField(null=True, verbose_name="Goal word count"),
         ),
         migrations.AlterField(
-            model_name='book',
-            name='review',
+            model_name="book",
+            name="review",
             field=models.TextField(null=True),
         ),
         migrations.AlterField(
-            model_name='book',
-            name='synopsis',
+            model_name="book",
+            name="synopsis",
             field=models.TextField(null=True),
         ),
         migrations.AlterField(
-            model_name='book',
-            name='title',
+            model_name="book",
+            name="title",
             field=models.CharField(max_length=50, null=True),
         ),
         migrations.AlterField(
-            model_name='book',
-            name='wordcount',
-            field=models.IntegerField(null=True, verbose_name='Word count'),
+            model_name="book",
+            name="wordcount",
+            field=models.IntegerField(null=True, verbose_name="Word count"),
         ),
     ]

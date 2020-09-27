@@ -20,5 +20,5 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("mybooks.urls")),
     path("", include("users.urls")),
-    path("accounts/", include ("registration.backends.simple.urls")),
+    path("accounts/", include("registration.backends.simple.urls")),
 ]

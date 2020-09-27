@@ -6,33 +6,43 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('mybooks', '0007_auto_20200627_1955'),
+        ("mybooks", "0007_auto_20200627_1955"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='book',
-            name='goalwordcount',
-            field=models.IntegerField(help_text='What are you aiming for?', null=True, verbose_name='Goal word count'),
+            model_name="book",
+            name="goalwordcount",
+            field=models.IntegerField(
+                help_text="What are you aiming for?",
+                null=True,
+                verbose_name="Goal word count",
+            ),
         ),
         migrations.AlterField(
-            model_name='book',
-            name='review',
-            field=models.TextField(help_text='Add any extra notes here', null=True),
+            model_name="book",
+            name="review",
+            field=models.TextField(help_text="Add any extra notes here", null=True),
         ),
         migrations.AlterField(
-            model_name='book',
-            name='synopsis',
+            model_name="book",
+            name="synopsis",
             field=models.TextField(help_text="What's it about?", null=True),
         ),
         migrations.AlterField(
-            model_name='book',
-            name='title',
-            field=models.CharField(help_text='A working title is great!', max_length=50, null=True),
+            model_name="book",
+            name="title",
+            field=models.CharField(
+                help_text="A working title is great!", max_length=50, null=True
+            ),
         ),
         migrations.AlterField(
-            model_name='book',
-            name='wordcount',
-            field=models.IntegerField(help_text='Your current word count', null=True, verbose_name='Word count'),
+            model_name="book",
+            name="wordcount",
+            field=models.IntegerField(
+                help_text="Your current word count",
+                null=True,
+                verbose_name="Word count",
+            ),
         ),
     ]

@@ -1,7 +1,12 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm, AuthenticationForm
+from django.contrib.auth.forms import (
+    UserCreationForm,
+    UserChangeForm,
+    AuthenticationForm,
+)
 from django.contrib.auth import login, logout, authenticate
 from .models import CustomUser
+
 
 class CustomUserCreationForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
@@ -12,8 +17,8 @@ class CustomUserCreationForm(UserCreationForm):
             "last_name",
             "email",
             "password1",
-            "password2"
-            ]
+            "password2",
+        ]
 
 
 class CustomLoginForm(AuthenticationForm):
@@ -23,7 +28,7 @@ class CustomLoginForm(AuthenticationForm):
         fields = [
             "username",
             "password",
-            ]
+        ]
 
     def clean(self):
         cleaned_data = super().clean()
@@ -42,4 +47,4 @@ class CustomUserChangeForm(UserChangeForm):
             "first_name",
             "last_name",
             "email",
-            ]
+        ]

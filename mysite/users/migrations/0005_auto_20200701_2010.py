@@ -6,21 +6,21 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('users', '0004_auto_20200630_2010'),
+        ("users", "0004_auto_20200630_2010"),
     ]
 
     operations = [
         migrations.DeleteModel(
-            name='NewsletterRecipient',
+            name="NewsletterRecipient",
         ),
         migrations.AlterField(
-            model_name='customuser',
-            name='is_active',
+            model_name="customuser",
+            name="is_active",
             field=models.BooleanField(default=True),
         ),
         migrations.AlterField(
-            model_name='customuser',
-            name='password',
+            model_name="customuser",
+            name="password",
             field=models.CharField(max_length=20),
         ),
     ]

@@ -6,57 +6,56 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('users', '0002_newsletterrecipient'),
+        ("users", "0002_newsletterrecipient"),
     ]
 
     operations = [
         migrations.AlterModelManagers(
-            name='customuser',
-            managers=[
-            ],
+            name="customuser",
+            managers=[],
         ),
         migrations.RemoveField(
-            model_name='customuser',
-            name='age',
+            model_name="customuser",
+            name="age",
         ),
         migrations.AddField(
-            model_name='customuser',
-            name='is_admin',
+            model_name="customuser",
+            name="is_admin",
             field=models.BooleanField(default=False),
         ),
         migrations.AlterField(
-            model_name='customuser',
-            name='date_joined',
+            model_name="customuser",
+            name="date_joined",
             field=models.DateTimeField(auto_now_add=True),
         ),
         migrations.AlterField(
-            model_name='customuser',
-            name='email',
+            model_name="customuser",
+            name="email",
             field=models.EmailField(max_length=50, unique=True),
         ),
         migrations.AlterField(
-            model_name='customuser',
-            name='first_name',
+            model_name="customuser",
+            name="first_name",
             field=models.CharField(max_length=20),
         ),
         migrations.AlterField(
-            model_name='customuser',
-            name='is_staff',
+            model_name="customuser",
+            name="is_staff",
             field=models.BooleanField(default=False),
         ),
         migrations.AlterField(
-            model_name='customuser',
-            name='is_superuser',
+            model_name="customuser",
+            name="is_superuser",
             field=models.BooleanField(default=False),
         ),
         migrations.AlterField(
-            model_name='customuser',
-            name='last_name',
+            model_name="customuser",
+            name="last_name",
             field=models.CharField(max_length=20),
         ),
         migrations.AlterField(
-            model_name='customuser',
-            name='username',
+            model_name="customuser",
+            name="username",
             field=models.CharField(max_length=20, unique=True),
         ),
     ]

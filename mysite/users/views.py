@@ -43,8 +43,10 @@ class CustomSignOutView(LogoutView):
         logout(request)
         return redirect("signin")
 
+
 def signup_success(request):
     return render(request, "registration/signup_success.html")
+
 
 @login_required
 def signin_success(request):

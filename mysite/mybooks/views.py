@@ -14,20 +14,24 @@ def index(request):
     if request.user.is_authenticated:
         return render(request, "mybooks/mybooks.html")
 
+
 @login_required
-def book_list(request): # aka "success"
+def book_list(request):  # aka "success"
     books = Book.objects.filter(date_added__lte=timezone.now()).order_by("date_added")
     return render(request, "mybooks/book_list.html", {"books": books})
+
 
 @login_required
 def book_detail(request, pk):
     book = get_object_or_404(Book, pk=pk)
-    return render (request, "mybooks/book_detail.html", {"book": book})
+    return render(request, "mybooks/book_detail.html", {"book": book})
+
 
 @login_required
 def stats(request, pk):
     book = get_object_or_404(Book, pk=pk)
-    return render (request, "mybooks/stats.html", {"book": book})
+    return render(request, "mybooks/stats.html", {"book": book})
+
 
 @login_required
 def create_book(request):
@@ -41,6 +45,7 @@ def create_book(request):
     else:
         createform = BookForm()
     return render(request, "mybooks/create_book.html", {"createform": createform})
+
 
 @login_required
 def update_book(request, pk):
@@ -70,8 +75,10 @@ def delete_book(request, pk):
 def about(request):
     return render(request, "mybooks/about.html")
 
+
 def contact(request):
     return render(request, "mybooks/contact.html")
+
 
 def terms_conditions(request):
     return render(request, "mybooks/terms-conditions.html")
