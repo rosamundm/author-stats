@@ -25,7 +25,7 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 SECRET_KEY = "secret"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["127.0.0.1"]
 
@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "mybooks",
     "crispy_forms",
     "rest_framework",
+    "api"
 ]
 
 MIDDLEWARE = [
