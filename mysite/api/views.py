@@ -1,9 +1,9 @@
 from mybooks.models import Book
 from .serializers import BookSerializer
-from rest_framework import viewsets
-from rest_framework import permissions
-from rest_framework.views import APIView
+from rest_framework import permissions, generics, viewsets
 from rest_framework.response import Response
+from django.shortcuts import render
+import json
 
 
 class BookViewSet(viewsets.ModelViewSet):

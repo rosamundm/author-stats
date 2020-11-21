@@ -35,15 +35,3 @@ class Book(models.Model):
             return round(remaining_pc, 1)
         else:
             return round(remaining_pc)
-
-    # words written since last time:
-    def words_added(wordcount, added):
-        if wordcount and added:
-            wordcount += added
-        return wordcount
-
-    # words edited out since last time:
-    def words_deleted(wordcount, deleted):
-        if wordcount and deleted:
-            wordcount -= deleted
-        return wordcount

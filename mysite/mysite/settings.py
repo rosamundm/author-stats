@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 
@@ -27,21 +26,30 @@ SECRET_KEY = "secret"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["127.0.0.1"]
-
+ALLOWED_HOSTS = [
+    "localhost",
+    "127.0.0.1",
+]
 
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
+
     "django.contrib.sessions",
+
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "users.apps.UsersConfig",
+
     "mybooks",
     "crispy_forms",
     "rest_framework",
-    "api"
+    "rest_framework_jwt",
+    "api",
+    "vue_frontend.apps.VueFrontendConfig",
+    "stats",
+    "corsheaders",
 ]
 
 MIDDLEWARE = [
@@ -53,7 +61,13 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+
+    "corsheaders.middleware.CorsMiddleware",
+
+#    "stats.middleware.LastVisitMiddleware",
 ]
+
+SESSION_ENGINE = "django.contrib.sessions.backends.file"
 
 ROOT_URLCONF = "mysite.urls"
 
@@ -72,6 +86,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 WSGI_APPLICATION = "mysite.wsgi.application"
 
@@ -106,12 +121,6 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-REST_FRAMEWORK = {
-    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
-    "PAGE_SIZE": 10,
-}
-
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
@@ -132,7 +141,6 @@ USE_TZ = True
 STATIC_URL = "/static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
-
 LOGIN_URL = "/signin/"
 LOGOUT_URL = "/signout/"
 LOGIN_REDIRECT_URL = "/"
@@ -150,13 +158,12 @@ EMAIL_USE_TLS = False
 EMAIL_PORT = 1025
 
 
-CRISPY_TEMPLATE_PACK = "bootstrap4"
-
 # for secret info:
 try:
     from dev_settings import *
 except ImportError:
     print("ImportError: have you made a dev_settings file? If so, ignore this message.")
+
 
 # should be True in production:
 SECURE_BROWSER_XSS_FILTER = True
@@ -166,3 +173,27 @@ SECURE_HSTS_SECONDS = 86400
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 SECURE_HSTS_PRELOAD = True
 X_FRAME_OPTIONS = "SAMEORIGIN"
+
+
+"""
+Settings for third-party apps:
+"""
+
+CRISPY_TEMPLATE_PACK = "bootstrap4"
+
+REST_FRAMEWORK = {
+    "DEFAULT_PERMISSION_CLASSES": "rest_framework.permissions.IsAuthenticated",
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+    "DEFAULT_AUTHENTICATION_CLASSES": "rest_framework_jwt.authentication.JSONWebTokenAuthentication",
+    "PAGE_SIZE": 10,
+}
+
+CORS_ORIGIN_WHITELIST = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "localhost",
+    "127.0.0.1"
+]

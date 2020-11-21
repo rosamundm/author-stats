@@ -4,7 +4,7 @@ from . import views
 
 router = routers.DefaultRouter()
 # register viewset with router class for automatic URL generation:
-router.register(r"books", views.BookViewSet)
+router.register(r"book-api", views.BookViewSet)
 
 urlpatterns = [
     path("", include(router.urls)),
