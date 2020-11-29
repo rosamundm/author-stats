@@ -3,3 +3,4 @@
 * set yourself a daily target
 * count history
 * statistic visualisation
+* add frontend

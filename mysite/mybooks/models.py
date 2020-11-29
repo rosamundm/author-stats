@@ -2,11 +2,13 @@ from django.db import models
 from django.conf import settings
 from django.urls import reverse
 from django.utils import timezone
+import datetime
+from simple_history.models import HistoricalRecords
 
 
 class Book(models.Model):
     date_added = models.DateTimeField(default=timezone.now, null=True)
-    last_updated = models.DateTimeField(auto_now=True, null=True)
+    last_updated = models.DateTimeField(auto_now=True, db_index=True, null=True)
     title = models.CharField(
         max_length=50, help_text="A working title is great!", null=True
     )
@@ -18,6 +20,9 @@ class Book(models.Model):
         help_text="What are you aiming for?", null=True, verbose_name="Goal word count"
     )
     review = models.TextField(help_text="Add any extra notes here", null=True)
+    
+    # for django-simple-history:
+    history = HistoricalRecords()
 
     def __str__(self):
         return self.title

@@ -1,9 +1,10 @@
 from django.contrib import admin
 from django.urls import include, path
-from .views import CustomSignOutView
+from .views import CustomSignOutView, ProfileView
 from . import views
 
 urlpatterns = [
+    path("profile/", ProfileView.as_view(), name="profile"),
     path("signout/", CustomSignOutView.as_view(), name="signout"),
     path("signup/", views.signup, name="signup"),
     path("signin/", views.signin, name="signin"),

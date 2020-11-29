@@ -6,7 +6,7 @@ from django.contrib import messages
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.views import LoginView, LogoutView, FormView
 from django.contrib.auth.decorators import login_required
-from django.views import generic
+from django.views.generic import TemplateView
 
 
 def signup(request):
@@ -17,7 +17,6 @@ def signup(request):
             user = signupform.cleaned_data.get("username", "password")
             return HttpResponseRedirect(reverse("signup_success"))
     return render(request, "registration/signup.html", {"signupform": signupform})
-
 
 def signin(request):
     signinform = CustomLoginForm(data=request.POST)
@@ -36,6 +35,13 @@ def signin(request):
     else:
         return render(request, "registration/signin.html", {"signinform": signinform})
 
+def signup_success(request):
+    return render(request, "registration/signup_success.html")
+
+@login_required
+def signin_success(request):
+    return render(request, "registration/signin_success.html")
+
 
 class CustomSignOutView(LogoutView):
     @login_required
@@ -44,10 +50,7 @@ class CustomSignOutView(LogoutView):
         return redirect("signin")
 
 
-def signup_success(request):
-    return render(request, "registration/signup_success.html")
+class ProfileView(TemplateView):
+    def get(self, request, *args, **kwargs):
+        return render(request, "users/profile.html")
 
-
-@login_required
-def signin_success(request):
-    return render(request, "registration/signin_success.html")

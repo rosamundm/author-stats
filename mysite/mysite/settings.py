@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     "vue_frontend.apps.VueFrontendConfig",
     "stats",
     "corsheaders",
+    "simple_history",
 ]
 
 MIDDLEWARE = [
@@ -63,8 +64,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 
     "corsheaders.middleware.CorsMiddleware",
-
-#    "stats.middleware.LastVisitMiddleware",
+    "simple_history.middleware.HistoryRequestMiddleware",
 ]
 
 SESSION_ENGINE = "django.contrib.sessions.backends.file"

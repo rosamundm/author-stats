@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
+from django.utils import timezone
 
 
 # defines what happens when user is created
@@ -29,6 +30,8 @@ class CustomUser(AbstractUser):
     is_admin = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
+
+    last_login = models.DateTimeField(auto_now=True, null=True)
 
     USERNAME_FIELD = "username"
     REQUIRED_FIELDS = [

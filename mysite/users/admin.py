@@ -14,7 +14,9 @@ class CustomUserAdmin(UserAdmin):
         "first_name",
         "last_name",
         "is_active",
+        "last_login",
     ]
 
+    readonly_fields = ["last_login",] 
 
 admin.site.register(CustomUser, CustomUserAdmin)
