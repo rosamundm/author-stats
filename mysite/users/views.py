@@ -18,6 +18,7 @@ def signup(request):
             return HttpResponseRedirect(reverse("signup_success"))
     return render(request, "registration/signup.html", {"signupform": signupform})
 
+
 def signin(request):
     signinform = CustomLoginForm(data=request.POST)
     if request.method == "POST":
@@ -35,8 +36,10 @@ def signin(request):
     else:
         return render(request, "registration/signin.html", {"signinform": signinform})
 
+
 def signup_success(request):
     return render(request, "registration/signup_success.html")
+
 
 @login_required
 def signin_success(request):
@@ -53,4 +56,3 @@ class CustomSignOutView(LogoutView):
 class ProfileView(TemplateView):
     def get(self, request, *args, **kwargs):
         return render(request, "users/profile.html")
-

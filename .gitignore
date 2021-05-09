@@ -7,3 +7,4 @@ venv2
 dev_settings.py
 __pycache__
 notes.py
+get-pip.py

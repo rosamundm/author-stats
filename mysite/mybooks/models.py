@@ -1,12 +1,20 @@
+import datetime
 from django.db import models
 from django.conf import settings
 from django.urls import reverse
 from django.utils import timezone
-import datetime
+from users.models import CustomUser
 from simple_history.models import HistoricalRecords
 
 
 class Book(models.Model):
+    author = models.ForeignKey(
+        null=True,
+        blank=False,
+        related_name="books",
+        on_delete=models.CASCADE,
+        to=CustomUser,
+    )
     date_added = models.DateTimeField(default=timezone.now, null=True)
     last_updated = models.DateTimeField(auto_now=True, db_index=True, null=True)
     title = models.CharField(

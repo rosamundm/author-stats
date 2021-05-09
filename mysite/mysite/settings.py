@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import environ
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 
@@ -24,50 +25,52 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 SECRET_KEY = "secret"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
+    "authorcount.pythonanywhere.com",
 ]
 
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
-
     "django.contrib.sessions",
-
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "users.apps.UsersConfig",
-
     "mybooks",
     "crispy_forms",
     "rest_framework",
-    "rest_framework_jwt",
     "api",
-    "vue_frontend.apps.VueFrontendConfig",
+    # "vue_frontend.apps.VueFrontendConfig",
     "stats",
     "corsheaders",
     "simple_history",
+    "django_filters",
+    "user_sessions",
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
-    "django.contrib.sessions.middleware.SessionMiddleware",
+    # "django.contrib.sessions.middleware.SessionMiddleware",
+    # for django_user_sessions:
+    "mysite.middleware.UserSessionsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-
     "corsheaders.middleware.CorsMiddleware",
     "simple_history.middleware.HistoryRequestMiddleware",
 ]
 
-SESSION_ENGINE = "django.contrib.sessions.backends.file"
+# SESSION_ENGINE = "django.contrib.sessions.backends.file"
+# for django_user_sessions:
+SESSION_ENGINE = "user_sessions.backends.db"
 
 ROOT_URLCONF = "mysite.urls"
 
@@ -193,7 +196,4 @@ CORS_ORIGIN_WHITELIST = [
     "http://127.0.0.1:3000",
 ]
 
-CSRF_TRUSTED_ORIGINS = [
-    "localhost",
-    "127.0.0.1"
-]
+CSRF_TRUSTED_ORIGINS = ["localhost", "127.0.0.1"]
