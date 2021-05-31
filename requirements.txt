@@ -125,7 +125,7 @@ typed-ast==1.4.1
 typing-extensions==3.7.4.3
 Unidecode==1.2.0
 urllib3==1.25.9
-wagtail==2.11.3
+wagtail==2.11.6
 waitress==1.4.4
 wcwidth==0.2.4
 webencodings==0.5.1
