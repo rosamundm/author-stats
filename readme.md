@@ -6,10 +6,6 @@ Mein Projekt heißt *authorCount*. Es handelt sich um eine Web-Anwendung, bei de
 
 Ich habe *authorCount* selber auf meine eigenen Bedürfnisse als Schriftstellerin konzipiert und auf [Django](https://www.djangoproject.com/) gebaut. Zum Frontend-Design habe ich [Bootstrap 4](getbootstrap.com) als Hilfsframework genommen.
 
-Leider gelang mir das zeitgerechte Projektdeployment nicht, dafür habe ich Bildschirmfotos mit Anmerkungen gemacht.
-
-
-
 ## Die Anwendung
 Man kann sich über die Startseite ein Konto anlegen oder wieder einloggen. \
 ![homepage](/screenshots/pic1.png)
