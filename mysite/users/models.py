@@ -5,8 +5,9 @@ from django.utils import timezone
 
 # defines what happens when user is created
 class CustomUserManager(BaseUserManager):
-    def create_user(self, email, username, password=None):
+    def create_user(self, id, email, username, password=None):
         user = self.model(
+            id=id,
             email=email,
             username=username,
             first_name=first_name,
@@ -17,17 +18,18 @@ class CustomUserManager(BaseUserManager):
         user.save(using=self.db)
         return user
 
-    def create_superuser(self, email, username, password=None):
+    def create_superuser(self, id, email, username, password=None):
         user = self.model(
+            id=id,
             email=email,
             username=username,
-            first_name='',
-            last_name='',
+            first_name="",
+            last_name="",
             password=password,
             is_active=True,
             is_admin=True,
             is_staff=True,
-            is_superuser=True
+            is_superuser=True,
         )
         user.set_password(password)
         user.save(using=self.db)

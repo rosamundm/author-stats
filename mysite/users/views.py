@@ -3,10 +3,12 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect, reverse
 from django.urls import reverse_lazy
 from django.contrib import messages
-from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth import login, logout, authenticate, update_session_auth_hash
+from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.views import LoginView, LogoutView, FormView
 from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView
+from .models import CustomUser
 
 
 def signup(request):
@@ -46,6 +48,26 @@ def signin_success(request):
     return render(request, "registration/signin_success.html")
 
 
+@login_required
+def change_password(request):
+    if request.method == 'POST':
+        pw_change_form = PasswordChangeForm(request.user, request.POST)
+        if pw_change_form.is_valid():
+            user = pw_change_form.save()
+            update_session_auth_hash(request, user)
+            messages.success(request, 'Your password has been changed.')
+            
+            # see urls.py
+            return redirect('change_password')
+        else:
+            messages.error(request, 'Please correct the error below.')
+    else:
+        pw_change_form = PasswordChangeForm(request.user)
+    return render(request, 'users/change_password.html', {
+        'pw_change_form': pw_change_form
+    })
+
+
 class CustomSignOutView(LogoutView):
     @login_required
     def signout(request):
@@ -55,4 +77,5 @@ class CustomSignOutView(LogoutView):
 
 class ProfileView(TemplateView):
     def get(self, request, *args, **kwargs):
-        return render(request, "users/profile.html")
+        user_id = self.request.user.id
+        return render(request, "users/profile.html", {"user_id": user_id})

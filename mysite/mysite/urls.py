@@ -21,5 +21,7 @@ urlpatterns = [
     path("", include("mybooks.urls")),
     path("", include("users.urls")),
     path("", include("api.urls")),
-    path("", include("frontend.urls")),
+    # path("", include("frontend.urls")),
+    # for django_user_sessions:
+    path("", include("user_sessions.urls")),
 ]

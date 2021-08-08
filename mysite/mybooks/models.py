@@ -28,7 +28,7 @@ class Book(models.Model):
         help_text="What are you aiming for?", null=True, verbose_name="Goal word count"
     )
     review = models.TextField(help_text="Add any extra notes here", null=True)
-    
+
     # for django-simple-history:
     history = HistoricalRecords()
 
