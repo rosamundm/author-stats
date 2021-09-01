@@ -1,0 +1,31 @@
+{% extends "mybooks/index.html" %}
+
+{% block content %}
+
+<div class="container">
+
+   <h2>My profile</h2>
+    <br>
+   <strong>Last login:</strong> {{ user.last_login }}
+    <br>
+   <strong>Username:</strong> {{ user.username }}
+    <br>
+   <strong>Email address:</strong> {{ user.email }}
+    <br>
+    <br>
+
+
+    <a href="{% url 'change_password' %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Change password</a>
+
+    <!-- add view and url!-->
+    <!-- <a href="{% url 'change_email' %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Change email address</a> -->
+
+    <br>
+    <br>
+
+   Sorry, we do not currently support email address or username changes.
+   
+
+   {% endblock %}
+
+</div>
