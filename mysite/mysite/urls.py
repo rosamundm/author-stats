@@ -15,11 +15,28 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from rest_framework import routers
+from mybooks import views as book_views
+
+from rest_framework_jwt.views import (
+    obtain_jwt_token, 
+    refresh_jwt_token, 
+    verify_jwt_token
+)
+
+
+router = routers.DefaultRouter()
+router.register(r"books", book_views.BookViewSet)
+
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("api/v1/", include(router.urls)),
+    path("api/v1/token-auth/", obtain_jwt_token),
+    path("api/v1/token-refresh/", refresh_jwt_token),
+    path("api/v1/token-verify/", verify_jwt_token),
+
     path("", include("mybooks.urls")),
     path("", include("users.urls")),
-    path("", include("api.urls")),
-    path("", include("frontend.urls")),
+    # path("", include("frontend.urls")),
 ]
